@@ -31,24 +31,20 @@ const parsePrice = (price) => {
 const formatINR = (amount) => `₹${Number(amount || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
 
 let cart = [];
-try {
-  cart = JSON.parse(localStorage.getItem("vortex_cart") || "[]");
-} catch { cart = []; }
+try { cart = JSON.parse(localStorage.getItem("vortex_cart") || "[]"); } catch { cart = []; }
 
-// Security check: Verify prices against eventsData so users can't edit LocalStorage to get free tickets
 cart = cart.map((item) => {
   const eventRecord = eventsData.find((e) => e.id === item.id);
   return { ...item, price: eventRecord ? parsePrice(eventRecord.price) : 0 };
 });
 
-// If cart is empty, kick them back to the home page
 if (cart.length === 0) {
     alert("Your cart is empty! Redirecting to events...");
     window.location.href = "index.html#events";
 }
 
 // =========================================
-// 3. DISCOUNT MATH (Exact same logic as index.js)
+// 3. DISCOUNT MATH 
 // =========================================
 const getCartBilling = () => {
     const eligibleItems = cart.filter((item) => item.id !== "sridp");
@@ -78,10 +74,11 @@ const getCartBilling = () => {
 };
 
 // =========================================
-// 4. RENDER ORDER SUMMARY
+// 4. RENDER ORDER SUMMARY & REMOVE BTNS
 // =========================================
 const renderOrder = () => {
     const list = document.getElementById("checkoutEventList");
+    list.replaceChildren(); // Clears the list before re-rendering
     
     cart.forEach((item) => {
         const row = document.createElement("div");
@@ -95,13 +92,56 @@ const renderOrder = () => {
 
         const category = document.createElement("span");
         category.textContent = `${item.category} Series`;
+        details.append(name, category);
+
+        // Container for price and remove button
+        const rightSide = document.createElement("div");
+        rightSide.style.display = "flex";
+        rightSide.style.alignItems = "center";
+        rightSide.style.gap = "1.2rem";
+        rightSide.style.flexShrink = "0"; // Prevents the button from being squished off-screen
 
         const price = document.createElement("strong");
         price.textContent = formatINR(item.price);
         price.style.fontFamily = "'Orbitron', sans-serif";
 
-        details.append(name, category);
-        row.append(details, price);
+        // Create Remove Button
+        const removeBtn = document.createElement("button");
+        removeBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        removeBtn.style.background = "none";
+        removeBtn.style.border = "none";
+        removeBtn.style.color = "#ff4757";
+        removeBtn.style.fontSize = "1.2rem";
+        removeBtn.style.cursor = "pointer";
+        removeBtn.style.padding = "5px"; // Gives it a better click area
+        removeBtn.style.transition = "transform 0.2s, color 0.2s";
+        removeBtn.setAttribute("aria-label", `Remove ${item.name}`);
+
+        // Hover effects
+        removeBtn.addEventListener("mouseenter", () => {
+            removeBtn.style.transform = "scale(1.15)";
+            removeBtn.style.color = "#ff6b81";
+        });
+        removeBtn.addEventListener("mouseleave", () => {
+            removeBtn.style.transform = "scale(1)";
+            removeBtn.style.color = "#ff4757";
+        });
+
+        // Click handler to remove item
+        removeBtn.addEventListener("click", () => {
+            cart = cart.filter((cItem) => cItem.id !== item.id);
+            localStorage.setItem("vortex_cart", JSON.stringify(cart));
+
+            if (cart.length === 0) {
+                alert("Your cart is empty! Redirecting to events...");
+                window.location.href = "index.html#events";
+            } else {
+                renderOrder(); // Redraws the list instantly
+            }
+        });
+
+        rightSide.append(price, removeBtn);
+        row.append(details, rightSide);
         list.appendChild(row);
     });
 
@@ -112,6 +152,7 @@ const renderOrder = () => {
     document.getElementById("checkoutTotal").textContent = formatINR(billing.total);
 };
 
+// Initial Render
 renderOrder();
 
 // =========================================
@@ -121,40 +162,41 @@ const collegeSelect = document.getElementById("collegeSelect");
 const otherCollegeGroup = document.getElementById("otherCollegeGroup");
 const otherCollegeInput = document.getElementById("otherCollege");
 
-// Show/Hide the "Other" college text box
-collegeSelect.addEventListener("change", (e) => {
-    if (e.target.value === "Other") {
-        otherCollegeGroup.style.display = "block";
-        otherCollegeInput.required = true;
-    } else {
-        otherCollegeGroup.style.display = "none";
-        otherCollegeInput.required = false;
-        otherCollegeInput.value = "";
-    }
-});
+if (collegeSelect) {
+    collegeSelect.addEventListener("change", (e) => {
+        if (e.target.value === "Other") {
+            otherCollegeGroup.style.display = "block";
+            otherCollegeInput.required = true;
+        } else {
+            otherCollegeGroup.style.display = "none";
+            otherCollegeInput.required = false;
+            otherCollegeInput.value = "";
+        }
+    });
+}
 
-document.getElementById("checkoutForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    // Determine the final college name
-    let finalCollege = collegeSelect.value;
-    if (finalCollege === "Other") {
-        finalCollege = otherCollegeInput.value.trim();
-    }
+const checkoutForm = document.getElementById("checkoutForm");
+if (checkoutForm) {
+    checkoutForm.addEventListener("submit", (e) => {
+        e.preventDefault(); 
+        
+        let finalCollege = collegeSelect.value;
+        if (finalCollege === "Other") {
+            finalCollege = otherCollegeInput.value.trim();
+        }
 
-    // Compile the final payload
-    const participantData = {
-        name: document.getElementById("fullName").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        college: finalCollege,
-        cart: cart,
-        billing: getCartBilling()
-    };
+        const participantData = {
+            name: document.getElementById("fullName").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            college: finalCollege,
+            year: document.getElementById("yearSelect").value,
+            collegeId: document.getElementById("collegeId").value.trim(),
+            cart: cart,
+            billing: getCartBilling()
+        };
 
-    // Save details locally so the payment page can access them
-    localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
-
-    // Redirect to the placeholder payment gateway
-    window.location.href = "payment.html";
-});
+        localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
+        window.location.href = "payment.html";
+    });
+}

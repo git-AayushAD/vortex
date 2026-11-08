@@ -10,8 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+    <!-- Link your base CSS files -->
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/checkout.css" />
+    
+    <!-- Link the index cursor and animations -->
+    <link rel="stylesheet" href="./css/fx.css" />
+    
+    <style>
+      /* Generous click hitboxes for all interactive elements */
+      .icon-btn, .submit-btn, select, label { position: relative; }
+      .icon-btn::after, .submit-btn::after {
+        content: ""; position: absolute; top: -12px; right: -12px; bottom: -12px; left: -12px;
+      }
+    </style>
+
+    <script src="./scripts/fx.js" defer></script>
 </head>
 <body>
 
@@ -27,27 +41,36 @@
         </div>
     </nav>
 
+    <!-- Background Animations -->
     <div class="ambient-bg" aria-hidden="true">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
+        <div class="electrons-container">
+            <div class="electron e-1"></div>
+            <div class="electron e-2"></div>
+            <div class="electron e-3"></div>
+        </div>
     </div>
+
+    <!-- The fx.js file targets this specific div for the cursor -->
+    <div id="glowing-cursor"></div>
 
     <main class="checkout-container">
         <div class="checkout-grid">
             
-            <!-- LEFT COLUMN: The Form -->
             <div class="checkout-form-section">
                 <h2 class="font-heading" style="margin-bottom: 1.5rem;">Participant <span class="gradient-text">Details</span></h2>
                 
                 <form id="checkoutForm">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" class="form-control" placeholder="John Doe" required>
+                        <input type="text" id="fullName" class="form-control" placeholder="John Doe" minlength="3" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+                        <!-- Strict Indian Mobile Regex: Must start with 6-9, strictly 10 digits -->
+                        <input type="tel" id="phone" class="form-control" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" title="Enter a valid 10-digit Indian mobile number" maxlength="10" required>
                     </div>
 
                     <div class="form-group">
@@ -65,23 +88,39 @@
                         </select>
                     </div>
 
-                    <!-- Hidden by default, reveals if "Other" is selected -->
                     <div class="form-group" id="otherCollegeGroup" style="display: none;">
                         <label for="otherCollege">Enter College Name</label>
-                        <input type="text" id="otherCollege" class="form-control" placeholder="Type your college name...">
+                        <input type="text" id="otherCollege" class="form-control" placeholder="Type your college name..." minlength="3">
+                    </div>
+
+                    <!-- Year of Study -->
+                    <div class="form-group">
+                        <label for="yearSelect">Year of Study</label>
+                        <select id="yearSelect" class="form-control form-select" required>
+                            <option value="" disabled selected>Select your year...</option>
+                            <option value="First Year (FY)">First Year (FY)</option>
+                            <option value="Second Year (SY)">Second Year (SY)</option>
+                            <option value="Third Year (TY)">Third Year (TY)</option>
+                            <option value="Final Year (B.Tech/BE)">Final Year (B.Tech/BE)</option>
+                            <option value="Postgraduate (Masters)">Postgraduate (Masters)</option>
+                            <option value="PhD / Research Scholar">PhD / Research Scholar</option>
+                        </select>
+                    </div>
+
+                    <!-- College ID / Roll Number -->
+                    <div class="form-group">
+                        <label for="collegeId">College ID / Roll Number</label>
+                        <input type="text" id="collegeId" class="form-control" placeholder="e.g., 21CE1005" required>
                     </div>
 
                     <button type="submit" class="submit-btn" id="proceedBtn">Proceed to Payment</button>
                 </form>
             </div>
 
-            <!-- RIGHT COLUMN: Order Summary -->
             <div class="checkout-summary-section">
                 <h3 class="font-heading" style="font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">Order Summary</h3>
                 
-                <div id="checkoutEventList" class="checkout-events">
-                    <!-- Events will be injected here by JS -->
-                </div>
+                <div id="checkoutEventList" class="checkout-events"></div>
 
                 <div class="summary-totals">
                     <div class="summary-row">
