@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Papyrus | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PRODIGY SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Papyrus</span></h1>
+        <p class="event-tagline">Academic paper writing and presentation competition in collaboration with The Bombay Technologist</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹20,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Papyrus is where your academic drive takes centre stage. This is an opportunity to get familiar with existing literature, evaluate studies and write your own paper. Your contribution has the potential to influence conversations, start intellectual debates and provide a new outlook.</p>
+        
+        <p><strong>Special Collaboration:</strong> We are collaborating with The Bombay Technologist (BT), the esteemed student-run journal of TA, ICT. Winners will get to publish their articles/papers in a dedicated section of the upcoming edition!</p>
+
+        <p><strong>Categories:</strong></p>
+        <ul>
+          <li><strong>Undergraduate Category (UG):</strong> Review paper based on scientific literature and research. Strictly for undergraduate students only.</li>
+          <li><strong>Open Category (OPEN):</strong> Original research paper (no review papers allowed). Open for all UG, PG and research scholars.</li>
+        </ul>
+
+        <p><strong>Participation:</strong> Can be done solo, or in teams (up to 3 members per team). Only one research/review paper will be accepted per person/team. Team members can be from the same or different colleges/institutions. No participant can be part of more than 1 team.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Abstract Submission</h3>
+        <p>Participants are required to submit their abstracts for review or research papers.</p>
+        <ul>
+          <li>The abstract must be prepared and submitted in BOTH Word and PDF formats.</li>
+          <li>Send completed abstracts to: vortex.papyrus@gmail.com</li>
+          <li>Carefully read and follow all abstract submission guidelines.</li>
+          <li>Last date for submission: <strong>TBA</strong>.</li>
+          <li>Entries received after the deadline will not be considered.</li>
+          <li>If any changes or corrections are needed, complete them before the deadline. No late submissions or updates will be accepted.</li>
+          <li>Participants who qualify will receive notification of selection.</li>
+        </ul>
+        <p><strong>Abstract Guidelines:</strong></p>
+        <ul>
+          <li><strong>Title:</strong> Brief and informative, centered with bold font.</li>
+          <li><strong>Abstract:</strong> State objective in your own words, summarize results with theoretical and practical significance, max 300 words. No citations or references in abstract. Mention 3-5 keywords after abstract.</li>
+          <li><strong>File Naming:</strong> YOURNAME_LEVEL_TOPIC (e.g., SS_UG_CATALYSIS.docx). LEVEL = UG or OPEN.</li>
+        </ul>
+
+        <h3>Round 2: Paper Submission</h3>
+        <p>Participants shortlisted from Round 1 submit their complete review or research paper.</p>
+        <ul>
+          <li>Paper must be submitted in BOTH Word and PDF formats to: vortex.papyrus@gmail.com</li>
+          <li>Final date for submission: <strong>TBA</strong>.</li>
+          <li>Entries received after the deadline will not be reviewed.</li>
+          <li>Every submission will undergo plagiarism screening to ensure originality and authenticity.</li>
+          <li>Participants shortlisted for Round 3 based on quality, depth, and clarity of papers.</li>
+          <li>Selected participants receive notification with details and further instructions.</li>
+        </ul>
+        <p><strong>Important Note:</strong> The event maintains a zero-tolerance policy toward AI-generated content.</p>
+        <p><strong>Paper Guidelines:</strong></p>
+        <ul>
+          <li><strong>Text Structure:</strong> Introduction describing relevant previous work and objective of present investigation.</li>
+          <li><strong>Headings:</strong> Primary headings (Introduction, Results, Discussion, Conclusion) in Calibri 11. Other headings (Synthetic procedures, Materials, methods, Crystallography) in Calibri 10. Main text in Times New Roman 10.</li>
+          <li><strong>Abbreviations:</strong> Explain at first occurrence (e.g., Nanomaterials referred to as NMs, Carbon Nanotubes as CNT).</li>
+          <li><strong>Figures:</strong> Refer in text as (see fig 2.3) or fig 2.3 shows that.</li>
+          <li><strong>Page Numbers:</strong> Start from page 1 at right-hand corner.</li>
+          <li><strong>Citations:</strong> Full names of authors, Title of Article, Abbreviated Journal Name, Year, Volume, Issue, page number (Times New Roman 10).</li>
+        </ul>
+
+        <h3>Round 3: Paper Presentation</h3>
+        <p>The final round will be in the form of a presentation held offline on the campus of ICT Mumbai.</p>
+        <ul>
+          <li><strong>Presentation Time:</strong> UG Category (Max 10 minutes) | Open Category (Max 15 minutes).</li>
+          <li><strong>Time Management:</strong> Warning signal at 8 min mark (UG) and 13 min mark (Open Category). 2-minute window to wrap up presentation. Points will be deducted for any time over limit.</li>
+          <li><strong>Judging:</strong> Finalists present before experienced and well-qualified judges. Winners declared separately across two categories: UG and Open. Outstanding performers receive prizes and recognition for exceptional work.</li>
+          <li><strong>Important Rules:</strong> Submitted work must be original, no use of confidential content/data/figures. Vortex will not be responsible for any copyright issues. Providing false identity leads to disqualification.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Suggested Topics</h2>
+        
+        <h3>Undergraduate Category (UG):</h3>
+        <ul>
+          <li>Catalysis and Catalytic Processes</li>
+          <li>Chemical Engineering Applications in Medical Science</li>
+          <li>Heat transfer Equipment and Reactor Design</li>
+          <li>Novel separation processes and applications</li>
+          <li>Food Product Development</li>
+          <li>Smart polymer and applications</li>
+          <li>Polymer blends and composites</li>
+          <li>Enzyme catalysis in industrial processes</li>
+          <li>Current Breakthroughs in Diabetes Research</li>
+          <li>Transdermal and/or ocular drug delivery systems</li>
+          <li>Chemical and biological protective textiles</li>
+          <li>Pharmaceutically relevant dyes</li>
+          <li>Perfumery Applications of Oil-based paints</li>
+          <li>Applications and advances in Nanomaterials, Nanoscience and Nanotechnology</li>
+          <li>Integration of simulation tools in plant design</li>
+          <li>Valorization of industrial by-products</li>
+          <li>Wastewater Treatment, Green Chemistry, Sustainable Methods, Waste Management, CCUS and Clean Energy</li>
+          <li>Novel Technologies in Surfactants, Biofuels, Polymers & oleochemicals</li>
+        </ul>
+
+        <h3>Open Category (OPEN):</h3>
+        <ul>
+          <li>Food Preservation, Non-thermal Technology, Food Chemistry</li>
+          <li>Perfume intermediates and Sensory evaluations</li>
+          <li>Material Science and Engineering</li>
+          <li>Advance Polymer and Composites</li>
+          <li>Novel methods in drug and cosmetic delivery, discovery and medicine management</li>
+          <li>Recent Advances in Nanomaterials, Nanoscience and Nanotechnology</li>
+          <li>Process Modelling and Simulations</li>
+          <li>Hydrogen Fuel cells, Solar cells and battery technologies</li>
+          <li>Novel separation processes, Bioseparations, Membrane Separations</li>
+          <li>Biofabrications</li>
+          <li>Optimization of Biofermenter Systems</li>
+          <li>Crystallization</li>
+          <li>Bio-based Polymers</li>
+        </ul>
+        <p><em>Note: Don't let these suggested topics hold you back. Any paper with topics relevant to Chemical and Allied industries will be accepted.</em></p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Preet Panchal</h3>
+            <p>OEH-Prodigy<br><i class="fa-solid fa-phone"></i> +91 83560 89708</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gas Inducing Impeller Design | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PRODIGY SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Gas Inducing Impeller</span> Design</h1>
+        <p class="event-tagline">Design and fabricate a gas-inducing impeller optimized for mass transfer and suspension at minimal speed and power.</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹10,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Team Event:</strong> Maximum 3 participants per team. Entry fee: ₹75 per participant. Maximum 10 teams.</p>
+        <p><strong>Venue:</strong> Tinkerers Lab, ICT Mumbai</p>
+        <p><strong>Objective:</strong> Design and fabricate a gas-inducing impeller that produces the highest mass transfer coefficient and off-bottom suspension at the lowest angular speed with the lowest power consumed.</p>
+        <p><strong>Process Specs:</strong> Tank Volume: 500 ml | Liquid: Water | Gas: Air</p>
+        <p><strong>Dimensional Constraints:</strong> Max impeller diameter: 8 cm | Minimum bottom clearance: 2 cm | Max shaft diameter: 10 mm</p>
+        <p><strong>Fabrication Modes:</strong> 3D printing, Laser Cutting, and use of Power tools allowed. Welding is not possible.</p>
+        <p><strong>Materials Available:</strong> Filaments (PLA, ABS, TPU), Acrylic sheets</p>
+        <p><strong>Event Duration:</strong> 2-day event</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Problem Statement & Objective</h3>
+        <p>Design and fabricate a gas-inducing impeller that maximizes mass transfer and achieves off-bottom suspension at the lowest possible angular speed with minimal power consumption. Process conditions: 500 ml water in tank, air as induced gas.</p>
+
+        <h3>Constraints & Specifications</h3>
+        <ul>
+          <li>Maximum impeller diameter: 8 cm</li>
+          <li>Minimum clearance from reactor bottom: 2 cm</li>
+          <li>Maximum shaft diameter: 10 mm</li>
+          <li>Strict adherence required; deviation leads to failure.</li>
+        </ul>
+
+        <h3>Fabrication Guidelines</h3>
+        <ul>
+          <li><strong>Allowed:</strong> 3D printing, Laser Cutting, and use of Power tools.</li>
+          <li><strong>Not allowed:</strong> Welding.</li>
+          <li><strong>Materials provided:</strong> PLA/ABS/TPU filaments and acrylic sheets.</li>
+        </ul>
+
+        <h3>Event Schedule</h3>
+        <ul>
+          <li><strong>Day 1:</strong> 1st half: 3D modelling + sessions on 3D printing and laser cutting | 2nd half: Design and fabrication.</li>
+          <li><strong>Day 2:</strong> 1st half: Design and fabrication | 2nd half: Testing and marking.</li>
+        </ul>
+
+        <h3>Evaluation & Result Analysis</h3>
+        <p>The impeller must conform to dimensional criteria; non-compliance leads to failure.</p>
+        <p><strong>Metrics:</strong></p>
+        <ul>
+          <li>Critical speed for gas induction</li>
+          <li>Off-bottom suspension speed</li>
+          <li>Rate to reach oxygen saturation</li>
+          <li>Power consumed (lower is better)</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Preet Panchal</h3>
+            <p>OEH-Prodigy<br><i class="fa-solid fa-phone"></i> +91 83560 89708</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

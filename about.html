@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/about.css" />
+
+    <!-- Favicons for Browsers and Google Search -->
+    <link rel="icon" type="image/x-icon" href="photos/favicon.ico">
+    <link rel="icon" type="image/png" sizes="48x48" href="photos/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="photos/apple-touch-icon.png">
+    
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+      #cartToggleBtn, #cartSidebar, .btn-cart { display: none !important; }
+      
+      /* Removes any filters, tints, or grayscale effects from team photos */
+      .team-card img, .team-img-wrapper img {
+        filter: none !important;
+        -webkit-filter: none !important;
+        mix-blend-mode: normal !important;
+        opacity: 1 !important;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <nav class="navbar">
+      <a href="index.html" class="nav-logo">
+        <img src="photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Background Layer -->
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container about-wrapper" style="padding-top: 6rem;">
+      <div class="about-split">
+        <div class="info-card" style="--c: var(--primary-cyan)">
+          <h3 class="font-heading">The Event</h3>
+          <p>Vortex is a curated series of competitions, labs, and talks that blend fundamentals with real-world practice. Each track—Prodigy, General, and Pharma—delivers hands-on challenges, live demos, and mentorship.</p>
+          <ul>
+            <li>Live problem-solving labs and guided walkthroughs</li>
+            <li>Industry panels on process design, safety, and bioprocessing</li>
+            <li>Career-aligned workshops with certificates and feedback</li>
+          </ul>
+        </div>
+        <div class="info-card" style="--c: var(--primary-purple)">
+          <h3 class="font-heading">Institute of Chemical Technology, Mumbai</h3>
+          <p>The Institute of Chemical Technology (ICT), Mumbai, is a premier institute renowned for excellence in chemical engineering, chemical sciences, and allied fields. Established in 1933 as UDCT and granted Deemed-to-be University status in 2008, ICT combines strong academic foundations with deep industry integration.</p>
+          <div class="address-block">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Nathalal Parekh Marg, Matunga, Mumbai - 400019, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-header">
+        <div>
+          <h2 class="font-heading">Convenor</h2>
+          <p>Faculty advisor guiding Vortex 14.0</p>
+        </div>
+      </div>
+      
+      <div class="team-grid convenor-grid">
+        <div class="team-card" style="--c: var(--primary-cyan)">
+          <div class="team-img-wrapper"><img src="photos/Core/mandar.jpg" class="fit-image" alt="Dr. Mandar P Badve" loading="lazy" /></div>
+          <div class="team-info">
+            <h4>Dr. Mandar P Badve</h4><span class="role">Assistant Professor</span>
+            <p>Department of Chemical Engineering, Institute of Chemical Technology, Matunga, Mumbai-400019</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-header">
+        <div>
+          <h2 class="font-heading">Core Team</h2>
+          <p>The people designing every detail.</p>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/kshitij.png" alt="Kshitij Joshi" loading="lazy" /></div><div class="team-info"><h4>Kshitij Joshi</h4><span class="role">Secretary</span><p>Ensuring smooth coordination, organized documentation, and seamless communication across the team.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/rupak.png" alt="Rupak Humad" loading="lazy" /></div><div class="team-info"><h4>Rupak Humad</h4><span class="role">Secretary</span><p>Ensuring smooth coordination, organized documentation, and seamless communication across the team.</p></div></div>
+        
+        <div class="team-card" style="--c: var(--success-green)"><div class="team-img-wrapper"><img src="photos/Core/aayush.png" alt="Aayush Dongarwar" loading="lazy" /></div><div class="team-info"><h4>Aayush Dongarwar</h4><span class="role">Technical Head</span><p>Overseeing the technical backbone of Vortex 14.0, managing the website, and coordinating digital operations.</p></div></div>
+
+        <div class="team-card" style="--c: var(--primary-purple)"><div class="team-img-wrapper"><img src="photos/Core/avani.png" alt="Avani Kondejkar" loading="lazy" /></div><div class="team-info"><h4>Avani Kondejkar</h4><span class="role">Overall Event Head</span><p>Steering Pharma with strong leadership, meticulous planning, and a passion for excellence.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-purple)"><div class="team-img-wrapper"><img src="photos/Core/prajval.png" alt="Prajval Barve" loading="lazy" /></div><div class="team-info"><h4>Prajval Barve</h4><span class="role">Overall Event Head</span><p>Overseeing the planning and execution of General with dedication and strategic thinking.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-purple)"><div class="team-img-wrapper"><img src="photos/Core/preet.png" alt="Preet Panchal" loading="lazy" /></div><div class="team-info"><h4>Preet Panchal</h4><span class="role">Overall Event Head</span><p>Leading Prodigy with vision, precision, and an eye for excellence.</p></div></div>
+        
+        <div class="team-card" style="--c: var(--success-green)"><div class="team-img-wrapper"><img src="photos/Core/piyush.png" alt="Piyush Nirban" loading="lazy" /></div><div class="team-info"><h4>Piyush Nirban</h4><span class="role">PG representative</span><p>Bridging the postgraduate community with the event vision and ensuring better coordination.</p></div></div>
+
+        <div class="team-card" style="--c: #ffd93d"><div class="team-img-wrapper"><img src="photos/Core/shraddha.png" alt="Shraddha Behra" loading="lazy" /></div><div class="team-info"><h4>Shraddha Behera</h4><span class="role">Sponsorship Head</span><p>Driving sponsorship initiatives, building corporate partnerships, and securing collaborations to support the successful execution of Vortex 14.0.</p></div></div>
+        <div class="team-card" style="--c: #ffd93d"><div class="team-img-wrapper"><img src="photos/Core/pranav.png" alt="Pranav Joshi" loading="lazy" /></div><div class="team-info"><h4>Pranav Joshi</h4><span class="role">Sponsorship Head</span><p>Driving sponsorship initiatives, building corporate partnerships, and securing collaborations to support the successful execution of Vortex 14.0.</p></div></div>
+
+        <div class="team-card" style="--c: #45aaf2"><div class="team-img-wrapper"><img src="photos/Core/mrunal.png" alt="Mrunal Bhat" loading="lazy" /></div><div class="team-info"><h4>Mrunal Bhat</h4><span class="role">Resource & Logistics Head</span><p>Driving the energy, engagement, and spirit of Vortex 14.0 through exciting initiatives.</p></div></div>
+        <div class="team-card" style="--c: #45aaf2"><div class="team-img-wrapper"><img src="photos/Core/ishan.png" alt="Ishan Chhaparwal" loading="lazy" /></div><div class="team-info"><h4>Ishan Chhaparwal</h4><span class="role">Resource & Logistics Head</span><p>Driving the energy, engagement, and spirit of Vortex 14.0 through exciting initiatives.</p></div></div>
+
+        <div class="team-card" style="--c: #ff5a4d"><div class="team-img-wrapper"><img src="photos/Core/prapti.png" alt="Prapti Pandey" loading="lazy" /></div><div class="team-info"><h4>Prapti Pandey</h4><span class="role">Design Head</span><p>Transforming ideas into impactful visuals through creativity and precision.</p></div></div>
+        <div class="team-card" style="--c: #ff5a4d"><div class="team-img-wrapper"><img src="photos/Core/prem.png" alt="Prem Kudale" loading="lazy" /></div><div class="team-info"><h4>Prem Kudale</h4><span class="role">Design Head</span><p>Transforming ideas into impactful visuals through creativity and precision.</p></div></div>
+        <div class="team-card" style="--c: #ff5a4d"><div class="team-img-wrapper"><img src="photos/Core/sanyuja.png" alt="Sanyuja Sonawane" loading="lazy" /></div><div class="team-info"><h4>Sanyuja Sonawane</h4><span class="role">Creatives Head</span><p>Turning imagination into engaging concepts and unforgettable experiences.</p></div></div>
+        <div class="team-card" style="--c: #ff5a4d"><div class="team-img-wrapper"><img src="photos/Core/yutika.png" alt="Yutika Rathi" loading="lazy" /></div><div class="team-info"><h4>Yutika Rathi</h4><span class="role">Creatives Head</span><p>Turning imagination into engaging concepts and unforgettable experiences.</p></div></div>
+
+        <div class="team-card" style="--c: var(--primary-purple)"><div class="team-img-wrapper"><img src="photos/Core/uday.png" alt="Uday Gondane" loading="lazy" /></div><div class="team-info"><h4>Uday Gondane</h4><span class="role">Registration Head</span><p>Managing registrations and ensuring a seamless experience for every participant.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-purple)"><div class="team-img-wrapper"><img src="photos/Core/karthikey.png" alt="Karthikey Daga" loading="lazy" /></div><div class="team-info"><h4>Kartikey Daga</h4><span class="role">Registration Head</span><p>Managing registrations and ensuring a seamless experience for every participant.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-purple)"><div class="team-img-wrapper"><img src="photos/Core/dharam.png" alt="Dharam Visaria" loading="lazy" /></div><div class="team-info"><h4>Dharam Visaria</h4><span class="role">Campus Ambassador</span><p>Representing Vortex across campuses, spreading awareness, engaging students, and encouraging participation in the fest. </p></div></div>
+
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/aditi.png" alt="Aditi Narute" loading="lazy" /></div><div class="team-info"><h4>Aditi Narute</h4><span class="role">Content & Social Media Head</span><p>Crafting compelling stories and building the digital voice of Vortex 14.0.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/soham.png" alt="Soham Patil" loading="lazy" /></div><div class="team-info"><h4>Soham Patil</h4><span class="role">Content & Social Media Head</span><p>Crafting compelling stories and building the digital voice of Vortex 14.0.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/alina.png" alt="Alina Kausar" loading="lazy" /></div><div class="team-info"><h4>Alina Kausar</h4><span class="role">Public Relations Head</span><p>Leading public relations and outreach initiatives to build strong connections, enhance Vortex’s visibility, and strengthen its presence across colleges and communities.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/leisha.png" alt="Liesha Agrawal" loading="lazy" /></div><div class="team-info"><h4>Liesha Agrawal</h4><span class="role">Public Relations Head</span><p>Leading public relations and outreach initiatives to build strong connections, enhance Vortex’s visibility, and strengthen its presence across colleges and communities.</p></div></div>
+        <div class="team-card" style="--c: var(--primary-cyan)"><div class="team-img-wrapper"><img src="photos/Core/mrunal_p.png" alt="Mrunal Pawar" loading="lazy" /></div><div class="team-info"><h4>Mrunal Pawar</h4><span class="role">Public Relations Head</span><p>Leading public relations and outreach initiatives to build strong connections, enhance Vortex’s visibility, and strengthen its presence across colleges and communities.</p></div></div>
+
+        <div class="team-card" style="--c: #ffd93d"><div class="team-img-wrapper"><img src="photos/Core/kimaya.png" alt="Kimaya Patankar" loading="lazy" /></div><div class="team-info"><h4>Kimaya Patankar</h4><span class="role">Hospitality Head</span><p>Overseeing hospitality and guest management to ensure a smooth, welcoming, and memorable experience for guests, speakers, and participants.</p></div></div>
+        <div class="team-card" style="--c: #ffd93d"><div class="team-img-wrapper"><img src="photos/Core/arya.png" alt="Aarya Kore" loading="lazy" /></div><div class="team-info"><h4>Aarya Kore</h4><span class="role">Hospitality Head</span><p>Overseeing hospitality and guest management to ensure a smooth, welcoming, and memorable experience for guests, speakers, and participants.</p></div></div>
+
+        <div class="team-card" style="--c: var(--success-green)"><div class="team-img-wrapper"><img src="photos/Core/pranav_b.png" alt="Pranav Bhavsar" loading="lazy" /></div><div class="team-info"><h4>Pranav Bhavsar</h4><span class="role">Videography & Photography Head</span><p>Capturing the moments, emotions, and energy that make Vortex 14.0 unforgettable.</p></div></div>
+        <div class="team-card" style="--c: var(--success-green)"><div class="team-img-wrapper"><img src="photos/Core/soham_j.png" alt="Soham Deshpande" loading="lazy" /></div><div class="team-info"><h4>Soham Deshpande</h4><span class="role">Videography & Photography Head</span><p>Capturing the moments, emotions, and energy that make Vortex 14.0 unforgettable.</p></div></div>
+      </div>
+    </main>
+
+    <!-- Glowing cursor element -->
+    <div id="glowing-cursor"></div>
+    
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="index.html#events">Events</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./scripts/about.js" defer></script>
+  </body>
+</html>

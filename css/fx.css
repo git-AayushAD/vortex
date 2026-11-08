@@ -1,0 +1,110 @@
+/* ===== Floating chemical formulas + glow cursor =====
+   Transform/opacity only. Sits above .ambient-bg (z -1) and below .main-container (z 1). */
+.formula-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.formula-layer.off {
+  display: none;
+} /* hidden on the About tab */
+.formula-layer span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  font-family: "Orbitron", sans-serif;
+  font-size: var(--s);
+  white-space: nowrap;
+  color: var(--primary-cyan);
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: formulaFloat var(--d) linear var(--delay) infinite;
+}
+.formula-layer span:nth-child(3n + 2) {
+  color: var(--primary-purple);
+}
+.formula-layer span:nth-child(5n) {
+  color: var(--text-muted);
+}
+@keyframes formulaFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  20% {
+    opacity: 0.38;
+  }
+  80% {
+    opacity: 0.38;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dx), -130px, 0);
+  }
+}
+
+/* Cursor: glowing cyan dot + trailing ring (mouse devices only) */
+html.fx-cursor,
+html.fx-cursor * {
+  cursor: none !important;
+}
+html.fx-cursor input,
+html.fx-cursor textarea {
+  cursor: text !important;
+}
+.fx-dot,
+.fx-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.fx-dot.on,
+.fx-ring.on {
+  opacity: 1;
+}
+.fx-dot::after,
+.fx-ring::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transition:
+    transform 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+    background 0.25s;
+}
+.fx-dot::after {
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  background: var(--primary-cyan);
+  box-shadow:
+    0 0 14px var(--primary-cyan),
+    0 0 28px var(--primary-purple);
+}
+.fx-ring::after {
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1.5px solid var(--primary-cyan);
+  opacity: 0.55;
+}
+.fx-ring.hot::after {
+  transform: scale(1.5);
+  background: rgba(0, 243, 255, 0.08);
+}
+.fx-dot.down::after {
+  transform: scale(0.7);
+}
+@media (prefers-reduced-motion: reduce) {
+  .formula-layer span {
+    animation: none;
+    opacity: 0.2;
+  }
+}

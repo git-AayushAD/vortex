@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socially Defined Problems | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>GENERAL SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Socially Defined</span> Problems</h1>
+        <p class="event-tagline">Solve real-life problems and make an effective contribution to society</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        
+        <p><strong>Team Formation:</strong></p>
+        <ul>
+          <li>Teams can comprise individuals or groups of 2-3 members.</li>
+          <li>Each individual is permitted only one entry to maintain fairness and focus.</li>
+          <li>Exclusive problem statements provided by partnering NGOs.</li>
+          <li>Teams receive distinct problem statements, evenly distributed among participants.</li>
+        </ul>
+
+        <p style="color: #ff4757; font-weight: 600;">Important Note: The judging panel reserves the rights to disqualify the participant team if any rules are breached. It is the responsibility of participants to keep themselves updated.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Social Impact Challenge Quiz (15 MCQs)</h3>
+        <p>A quiz that tests awareness of real social issues + engineering logic, not just chemical theory.</p>
+        <p><strong>Quiz Components:</strong></p>
+        <ul>
+          <li><strong>Community Reality Quiz:</strong> Based on everyday environmental problems.</li>
+          <li><strong>What Would You Fix? Scenario Cards:</strong> Each team gets a societal mini-scenario. Choose the most practical MCQ-solution option.</li>
+          <li><strong>Ethical Dilemma MCQs:</strong> All options will be good — you have to pick the most ethical choice.</li>
+        </ul>
+
+        <h3>Round 2: Report Submission</h3>
+        <p>Submission of at max three-page report/solution for the assigned problem statement.</p>
+        <p><strong>Solutions must elaborate on:</strong></p>
+        <ul>
+          <li>Logic and practicality</li>
+          <li>Resource utilization and optimization</li>
+          <li>Sustainability and long-term impact</li>
+        </ul>
+        <p><strong>Report Format:</strong></p>
+        <ul>
+          <li>PDF of 2-3 pages</li>
+          <li>Font: Times New Roman, Size: 12</li>
+          <li>Title: Problem statement number and title (Font size: 14)</li>
+          <li>Document named the same way</li>
+          <li>Problem statement must be stated at the start, before the solution</li>
+        </ul>
+
+        <h3>Round 3: Presentation and Survey</h3>
+        <p><strong>Presentation:</strong></p>
+        <ul>
+          <li>Shortlisted teams create a concise at maximum 20-slide PowerPoint presentation.</li>
+          <li>Presentations limited to 10 minutes maximum.</li>
+          <li>Detail solution insights and analysis.</li>
+        </ul>
+        
+        <p><strong>Survey Report:</strong></p>
+        <ul>
+          <li>Simultaneous submission of comprehensive survey report based on field visits and online research.</li>
+          <li>PDF of 1-2 pages</li>
+          <li>Font: Times New Roman, Size: 12</li>
+          <li>Title: Problem statement number and title (Font size: 14)</li>
+        </ul>
+
+        <p><strong>PPT Guidelines - Content Structure:</strong></p>
+        <ul>
+          <li>Clear, logical organization with seamless flow of ideas.</li>
+          <li>Comprehensive coverage of solution's components and rationale.</li>
+        </ul>
+
+        <p><strong>Visual Enhancements:</strong></p>
+        <ul>
+          <li>Creative and impactful use of visuals.</li>
+          <li>Engaging design elements enhancing presentation impact.</li>
+        </ul>
+
+        <p><strong>Delivery and Communication:</strong></p>
+        <ul>
+          <li>Engaging and confident delivery captivating audience attention.</li>
+          <li>Clarity and effectiveness in communicating solution details within time limit.</li>
+        </ul>
+
+        <p><strong>Survey Summary Guidelines:</strong></p>
+        <ul>
+          <li>Comprehensive summary of insights from field visits and online research.</li>
+          <li>Integration of survey findings into proposed solution strategy.</li>
+          <li>Effective utilization of diverse resources.</li>
+          <li>Clear and well-structured presentation of survey methodologies and outcomes.</li>
+          <li>Integration of community perspectives and feedback.</li>
+          <li>Adherence to ethical standards in conducting surveys and presenting findings.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Prajval Barve</h3>
+            <p>OEH-General<br><i class="fa-solid fa-phone"></i> +91 97665 29579</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

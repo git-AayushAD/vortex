@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jr. IDP | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PRODIGY SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Jr.</span> IDP</h1>
+        <p class="event-tagline">Junior Industry Defined Problems for first and second-year undergraduates</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹50,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Jr. IDP (Junior Industry Defined Problems) is Vortex's flagship event for first and second-year undergraduates. Ready to tackle real-world challenges in the chemical industries? This is your launchpad to post-ICT success!</p>
+        
+        <p><strong>Two Tailored Challenges:</strong></p>
+        <ul>
+          <li><strong>First-year UGs:</strong> Dive into an accessible problem statement designed for beginners.</li>
+          <li><strong>Second-year UGs:</strong> Tackle a more advanced challenge to sharpen your skills.</li>
+        </ul>
+
+        <p><strong>Team Format:</strong> Submit team solutions (max 3 members, any branch, any college) that shine in economy, practicality, and creativity. Individuals and teams of two are also permitted.</p>
+
+        <p><strong>Why Join Jr. IDP?</strong></p>
+        <ul>
+          <li>Gain hands-on experience with chemical sector issues.</li>
+          <li>Showcase innovation to judges from the industry.</li>
+          <li>Win merit certificates and cash prizes.</li>
+        </ul>
+
+        <p><strong>Participation:</strong> Open to 1st and 2nd-year undergraduate students from all branches of study.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Abstract Submission</h3>
+        <p>Teams are expected to submit a concise abstract detailing their proposed solution for the given problem statement.</p>
+        <ul>
+          <li>The abstract should incorporate responses to posed questions.</li>
+          <li>Submission deadlines will be conveyed by Event Heads (TBA).</li>
+          <li><strong>Evaluation Criteria:</strong> Innovation, thought process, and relevance to problem statement. Emphasis on highlighting the uniqueness of the solution.</li>
+          <li>The abstract serves as the primary determinant for progression to the next round.</li>
+        </ul>
+        <p><strong>Submission Requirements:</strong></p>
+        <ul>
+          <li>Email to: v.jridp@gmail.com</li>
+          <li>Subject line format: Jr. IDP PROBLEM STATEMENT DESIGNATION TEAM-name (e.g., Jr. IDP_FYUG_catalysts)</li>
+          <li>File name: TEAM name_abstract</li>
+          <li>Max 1-page PDF</li>
+        </ul>
+
+        <h3>Round 2: PPT Presentation</h3>
+        <p>Teams selected from Round 1 prepare their solution's report and presentation.</p>
+        
+        <p><strong>Report Requirements:</strong></p>
+        <ul>
+          <li>Should include calculations supporting the proposed solution.</li>
+          <li>File name: TEAM-name_report</li>
+          <li>Max 15-page PDF</li>
+        </ul>
+
+        <p><strong>Presentation Requirements:</strong></p>
+        <ul>
+          <li>File name: TEAM-name_ppt</li>
+          <li>Max 15 slide pptx or pdf</li>
+          <li>Teams will present their solution before a seasoned judge.</li>
+          <li>Exact date and time will be conveyed by Event Heads (TBA).</li>
+        </ul>
+
+        <p><strong>Presentation Norms:</strong></p>
+        <ul>
+          <li>Should not exceed 20 minutes duration.</li>
+          <li>Warning bells will be rung before the last 2 minutes of presentation.</li>
+          <li>Teams with at least 1 member from ICT Mumbai Campus will have to present offline. Only then is hybrid mode permissible.</li>
+          <li>Presentations received via email before the deadline will be displayed from the event's laptop; teams will just have to present.</li>
+        </ul>
+
+        <p><strong>Recognition:</strong></p>
+        <ul>
+          <li>Top-performing teams from each year, as determined by the judge, receive merit certificates and prize money.</li>
+          <li>Awards are given during the prize distribution ceremony.</li>
+        </ul>
+
+        <p><strong>Submission:</strong></p>
+        <ul>
+          <li>Email to: v.jridp@gmail.com</li>
+          <li>Subject: Jr. IDP PROBLEM STATEMENT DESIGNATION TEAM-name</li>
+          <li>Attach report and presentation files.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Event Conduct Norms</h2>
+        <ul>
+          <li>A team can consist of a maximum of 3 participants. Individuals and teams of two are also permitted.</li>
+          <li>Participants within a team are not required to be from the same college.</li>
+          <li>Participation is open to 1st and 2nd-year undergraduate students from all branches of study.</li>
+          <li>All communications with participant team leaders will happen in a dedicated WhatsApp group.</li>
+          <li>Decisions of the judge and event heads are final and binding in all circumstances.</li>
+          <li>Participants can address any problems to event heads, who will make best efforts to resolve them.</li>
+          <li>Accurate data and references are mandatory for all submissions. All references must adhere to recognized formats followed by international journals.</li>
+          <li>Plagiarism is strictly prohibited. Any team found in violation will be immediately disqualified.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Preet Panchal</h3>
+            <p>OEH-Prodigy<br><i class="fa-solid fa-phone"></i> +91 83560 89708</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

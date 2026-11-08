@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codathon 14.0 | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PRODIGY SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Codathon</span> 14.0</h1>
+        <p class="event-tagline">A marine-inspired coding adventure testing creativity, logic, and problem-solving skills</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Codathon 14.0 brings a fresh, marine-inspired adventure designed to test creativity, logic, and problem-solving skills through light-hearted challenges. Instead of high-pressure competition, participants navigate interesting logical obstacles and surface with clever solutions.</p>
+        
+        <p><strong>Philosophy:</strong> This event addresses a growing concern: many rely on LLMs to write code, which degenerates problem-solving skills and logical thinking. Programming has always been about integrating science, engineering, coding, logic, and willingness to struggle through ideas. We want to create a space where participants can genuinely test their abilities.</p>
+
+        <p><strong>Participation:</strong> Individual event only. Participants may bring their own laptops (optional). Lab computers might not have tools for every language.</p>
+
+        <p style="color: #ff4757; font-weight: 600;">Important: Using AI tools such as ChatGPT is strictly prohibited and leads to immediate disqualification. False identity leads to immediate disqualification.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Fundamentals</h3>
+        <p><strong>Duration:</strong> 1 to 1.5 hours</p>
+        <p><strong>Question Structure:</strong></p>
+        <ul>
+          <li>~7 simple logical MCQs, carrying 1 mark each</li>
+          <li>~6 questions assessing basic programming skills, carrying 3 marks each</li>
+        </ul>
+        <p><strong>Expected Skills:</strong></p>
+        <ul>
+          <li><strong>Debugging Skills:</strong> Basic programming error (wrt datatypes, input variables and arrays), and basic logical errors while formulating algorithms.</li>
+          <li><strong>Improving/Refining Code:</strong> Reducing time, reducing the amount of unnecessary computations, and optimizing algorithms (reducing redundant steps).</li>
+          <li><strong>Application:</strong> Translating basic engineering ideas into code/algorithm, and the ability to fit or construct a tiny model.</li>
+        </ul>
+
+        <h3>Round 2: Deep Problem Solving</h3>
+        <p><strong>Duration:</strong> ~4 hours total (3-4 questions, ~1 hour each)</p>
+        <p><strong>Marks Distribution per Question:</strong></p>
+        <ul>
+          <li>1 mark for final answer</li>
+          <li>2 marks for code presentation and readability</li>
+          <li>~5 marks for logic, reasoning, and engineering thought process</li>
+          <li>~2 marks for programming/implementation prowess</li>
+        </ul>
+        <p><strong>Resources Available:</strong> You'll get all theory you need, plus internet access: books, blogs, lecture notes, Stack Overflow, and forums.</p>
+        <p><strong>Expected Skills:</strong></p>
+        <ul>
+          <li>How you formulate a plan of attack/approach for the problem, breaking it down into manageable pieces.</li>
+          <li>Ability to pick the right tasks, simplify or postpone others, and make clear decisions that maximize outcome in limited time.</li>
+          <li>Make reasoning explicit in the source: comment on each major step with a short justification explaining why you chose it.</li>
+          <li>Effectively turn conceptual understanding and constraints into structured algorithms and computational models.</li>
+          <li>How you frame a problem often determines how well you solve it.</li>
+        </ul>
+        <p><strong>Language Choice:</strong> Use whichever programming language you want. Assembly is preferred the most. Of course, if we observe you writing a solution directly as machine code (and it's correct) - you get a chocolate!</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Code Quality and Evaluation</h2>
+        
+        <h3>Evaluation Criteria:</h3>
+        <ul>
+          <li>Judges' decisions are final (unless they change their mind - rare but theoretically possible).</li>
+          <li>Evaluation goes beyond output – we'll run your code and review your source file to assess approach and efficiency.</li>
+        </ul>
+
+        <h3>Code Quality Requirements:</h3>
+        <ul>
+          <li>Add comments to clarify your logic; all steps in approach and algorithm require proper and sufficient justification.</li>
+          <li>Comment in a systematic and brief way to maximize understanding about your approach.</li>
+          <li>Use clear, concise names and keep code neat and readable.</li>
+          <li>Clean formatting, organized blocks, and sensible flow make approach easier to understand.</li>
+          <li>A good solution is both correct and understandable.</li>
+        </ul>
+
+        <h3>Submission:</h3>
+        <ul>
+          <li>Attach a PDF/Word file of your code in case source file is corrupted.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Event Instructions</h2>
+        
+        <h3>Before the Event:</h3>
+        <ul>
+          <li>Arrive 20-30 minutes early to settle in and ensure your editor, compiler, and runtime are all set.</li>
+          <li>Participants may bring their own laptops (optional). Lab computers might not have tools for every language.</li>
+        </ul>
+
+        <h3>During the Event:</h3>
+        <ul>
+          <li>Limited Python-only troubleshooting support available, depending on manpower. This is for technical issues, not problem-solving help.</li>
+          <li>Stay true to the spirit of the event: solve honestly, think for yourself, and keep things fair.</li>
+        </ul>
+
+        <h3>General Guidelines:</h3>
+        <ul>
+          <li>Treat volunteers and judges with respect. They're here to help, not to argue.</li>
+          <li>Think calmly, breathe, and let your creativity shine - don't be a bot.</li>
+          <li>False identity will lead to immediate disqualification.</li>
+          <li>Using AI tools such as ChatGPT is strictly prohibited and leads to immediate disqualification.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Preet Panchal</h3>
+            <p>OEH-Prodigy<br><i class="fa-solid fa-phone"></i> +91 83560 89708</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

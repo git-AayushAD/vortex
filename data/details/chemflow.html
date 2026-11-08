@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChemFlow | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PRODIGY SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Chem</span>Flow</h1>
+        <p class="event-tagline">The ultimate auction showdown of Chemical Engineering prowess</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹30,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Welcome to ChemFlow! Dive into an electrifying challenge where knowledge meets strategy, and every decision counts. This isn't just a test of your technical skills; it's a battle of wits, economic savvy and Chemical engineering mastery.</p>
+        
+        <p><strong>Key Skills:</strong></p>
+        <ul>
+          <li>Chemical Engineering knowledge</li>
+          <li>Strategic thinking</li>
+          <li>Economic decision-making</li>
+          <li>Process design</li>
+          <li>Equipment selection</li>
+        </ul>
+        <p>Strategise, outbid, and outperform as you navigate a journey that demands both brilliance and boldness. Gear up for the thrill- ChemFlow awaits!</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Quiz Round</h3>
+        <p>This round requires a basic understanding of chemical principles and their applications.</p>
+        <ul>
+          <li><strong>Duration:</strong> TBA (approx. 1 hour)</li>
+          <li><strong>Format:</strong> Flexible format (can include MCQs, numerical questions, diagram problems, etc.)</li>
+          <li>Number of teams selected will be decided later.</li>
+        </ul>
+
+        <h3>Round 2: Rapid Fire Round</h3>
+        <p>All selected teams will participate in a rapid fire challenge where quick thinking and accuracy are key.</p>
+        <ul>
+          <li><strong>Structure:</strong> Questions will be Objective MCQ type and displayed on the screen. No negative marking for MCQs. The round will occur in two slots, with half of the advancing teams competing in each slot. Each team will be given 3-5 seconds to provide the answer to the question.</li>
+          <li><strong>Bonus Questions:</strong> Certain bonus questions will require calculation. These questions will double the weightage of MCQs and will have negative marking.</li>
+          <li><strong>Currency System:</strong> Each question carries certain weightage or currency. Each right answer gives certain currency to the team. Currency earned is used in the next round. There will be a cut-off limit for the amount of currency. Teams unable to reach the limit will be eliminated.</li>
+          <li><strong>Tie-Breaker - Sudden Death:</strong> If two teams end up with the same amount of currency, the tied teams play a 5-question rapid fire. The team with the most points advances to the final round.</li>
+        </ul>
+
+        <h3>Round 3: Final Auction Round</h3>
+        <p>The ultimate test of process design and strategic equipment selection.</p>
+        <ul>
+          <li><strong>Problem Statement:</strong> Industrial process problem statement given before round start. The same problem statement applies to all teams. It provides raw materials required for the process and the desired end product. Teams design a flowsheet according to chemical engineering knowledge.</li>
+          <li><strong>Equipment Auction:</strong> Necessary equipment required for the process will be auctioned. Each team can bid and buy equipment based on currency earned in the preceding round. Not every equipment displayed will be essentially useful; teams must match alertness with patience to select viable equipment.</li>
+          <li><strong>Winning Criteria:</strong> The motive is to see how efficiently you make the process. The team whose process is most energy and economically efficient wins. The process should match the model answer as close as possible.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Preet Panchal</h3>
+            <p>OEH-Prodigy<br><i class="fa-solid fa-phone"></i> +91 83560 89708</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

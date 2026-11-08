@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pharmaquest | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PHARMA SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Pharmaquest</span></h1>
+        <p class="event-tagline">Test pharmaceutical knowledge through quizzes, escape challenges, and drug debates</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Pharmaquest is not just a competition, it's a challenge designed to test your pharmaceutical knowledge, teamwork and strategic thinking in ways you've never imagined.</p>
+        
+        <p><strong>Team Composition:</strong> Each team will comprise 2-3 members. No substitutions are allowed once the event starts.</p>
+
+        <p><strong>Key Skills Tested:</strong></p>
+        <ul>
+          <li>Pharmaceutical knowledge</li>
+          <li>Teamwork</li>
+          <li>Strategic thinking</li>
+          <li>Critical thinking</li>
+          <li>Performance under pressure</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Pharmaquest Quiz</h3>
+        <p>This round will take place offline, where participants will answer questions as a team.</p>
+        <ul>
+          <li><strong>Scoring:</strong> Points awarded based on correct answers and the time required to answer them.</li>
+          <li><strong>Negative Marking:</strong> No negative marking.</li>
+          <li><strong>Tie-breaker:</strong> Tie-breaker questions will also be present.</li>
+          <li><strong>Alternative Format:</strong> An online round in a different format will also be taken for participants who will be unable to attend the offline round due to genuine reasons.</li>
+        </ul>
+
+        <h3>Round 2: Pharmacode Escape</h3>
+        <p>An engaging puzzle-solving challenge where teams must crack codes to progress through levels.</p>
+        <p><strong>Gameplay:</strong></p>
+        <ul>
+          <li>Each team receives a Level 1 clue sheet at the start; every level contains one puzzle.</li>
+          <li>Solving a level reveals a code, which the team must submit to event heads to receive the clue for the next level.</li>
+          <li>Teams must solve all levels in order.</li>
+          <li>As teams progress, the difficulty level increases. Each level carries fixed points based on difficulty.</li>
+        </ul>
+        <p><strong>Scoring:</strong></p>
+        <ul>
+          <li>Teams will earn certain points for solving each level.</li>
+          <li>The teams to complete maximum levels in a fixed time will proceed to the next round.</li>
+          <li>A team can skip a level only after 3 tries, and points may be deducted for this.</li>
+        </ul>
+
+        <h3>Round 3: Drugbust</h3>
+        <p>A debate round testing critical thinking and analytical skills regarding practical application of pharmaceuticals.</p>
+        <p><strong>Objective:</strong> Participants will be presented with a specific drug and a list of 10 properties related to it. Your task is to act as advocates or critics, arguing either 'For' or 'Against' the drug's suitability based on the presented properties. The central difficulty lies in discerning if arguments presented are genuine, factual justifications or persuasive 'bluffs' intended to sway the audience.</p>
+        <p><strong>Gameplay:</strong></p>
+        <ul>
+          <li><strong>The Task:</strong> Construct a detailed argument defending or opposing the drug for the assigned condition.</li>
+          <li><strong>The Approach:</strong> Your presentation must be balanced. Regardless of your stance, you must discuss both Merits (efficacy, mechanisms) and Drawbacks (side effects, interactions).</li>
+          <li><strong>Timing:</strong> Strict time limits apply to initial presentations and rebuttals.</li>
+        </ul>
+        <p><strong>Scoring Criteria:</strong></p>
+        <ul>
+          <li><strong>Core Metrics:</strong> Strength of logic, clarity/delivery, creativity, and quality of rebuttals.</li>
+          <li><strong>Bonus:</strong> Awarded for explicitly citing clinical trials or scientific literature to support your claims.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Avani Kondejkar</h3>
+            <p>OEH-Pharma<br><i class="fa-solid fa-phone"></i>+91 76665 61168</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

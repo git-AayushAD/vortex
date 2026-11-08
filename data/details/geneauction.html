@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gene Auction | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PHARMA SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Gene</span> Auction</h1>
+        <p class="event-tagline">The ultimate game of survival on a molecular level through strategic gene bidding</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Gene Auction is the ultimate game of survival on a molecular level. There's only one motto- 'Fight To Survive'</p>
+        
+        <p><strong>Requirements:</strong></p>
+        <ul>
+          <li>Elementary knowledge of biological sciences</li>
+          <li>Logical reasoning</li>
+          <li>Good decision-making skills</li>
+        </ul>
+
+        <p><strong>Team Format:</strong> You can make a team of two participants from any college or branch. Other institute students can also participate. The event is open for all UG as well as PG students. Team members should be able to communicate effectively with each other as well as the event organizers.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Qualifying Quiz</h3>
+        <p>The first round will consist of a simple quiz based on which teams will be selected for the subsequent rounds.</p>
+        <ul>
+          <li><strong>Content:</strong> General knowledge and basic questions related to basic genetic and molecular biology.</li>
+          <li><strong>Number of Questions:</strong> 20 questions.</li>
+          <li><strong>Time Limit:</strong> 15 minutes.</li>
+          <li><strong>Negative Marking:</strong> May be included.</li>
+          <li><strong>Important Rule:</strong> Use of google or any kind of external help will be considered an offence and the respective team will be disqualified.</li>
+          <li>Selected teams will be informed via mail or personal contact.</li>
+        </ul>
+
+        <h3>Round 2: Case Study</h3>
+        <p>This round will consist of only 15 teams. A group of three teams will be allotted a case study.</p>
+        <ul>
+          <li><strong>Discussion Time:</strong> 20 minutes will be given for understanding and discussion within the team.</li>
+          <li><strong>Digital Sources:</strong> Use of digital sources will be allowed only during the discussion time.</li>
+          <li><strong>Rapid Fire Round:</strong> Conducted for every group with the same case study.</li>
+          <li><strong>Selection:</strong> From each group, the best 2 teams will be selected for the next round.</li>
+        </ul>
+
+        <h3>Round 3: Gene Auction</h3>
+        <p>10 teams will proceed to the final round. Each team will be allotted an organism.</p>
+        <ul>
+          <li><strong>Initial ATP Allocation:</strong> Each team will be given a fixed number of ATPs initially.</li>
+          <li><strong>Performance Bonus:</strong> Extra 50 ATPs awarded to top 5 teams and 25 ATPs to remaining 5 teams based on previous round scores.</li>
+          <li><strong>Preparation Time:</strong> 10 minutes given to study about the allotted organism.</li>
+          <li><strong>Auction Display:</strong> Display of each organism and its characteristics for 2 minutes.</li>
+          <li><strong>Crisis Statements:</strong> After auction, crisis statements will be displayed, followed by question-answer round.</li>
+          <li><strong>Scoring:</strong> First team to answer correctly will be given points accordingly.</li>
+          <li><strong>Inter-Team Auction:</strong> Followed by inter-team auction.</li>
+          <li><strong>Final Details:</strong> Further details and rules about the auction will be provided a day before the auction.</li>
+          <li><strong>Winners:</strong> Top 3 teams with highest count of ATPs at the end of all crises will be declared as Winners.</li>
+          <li><strong>Ranking Advantage:</strong> To make this more competitive, groups with higher ranks in Round 1 and 2 will get some advantage in the final round which will be revealed later.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Avani Kondejkar</h3>
+            <p>OEH-Pharma<br><i class="fa-solid fa-phone"></i>+91 76665 61168</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

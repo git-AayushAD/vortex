@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ignite | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>GENERAL SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Ignite</span></h1>
+        <p class="event-tagline">The flagship presentation event of Vortex 14.0</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        
+        <p><strong>Format:</strong> Ignite is a multi-round presentation competition featuring:</p>
+        <ul>
+          <li>20 slides presentation.</li>
+          <li>Each slide auto-advances after 15 seconds (5 minutes total).</li>
+          <li>Topics can be anything - technical, non-technical, humorous, historical, pop-culture or current affairs.</li>
+          <li>Presentation must be made on the provided template.</li>
+        </ul>
+
+        <p><strong>Judging:</strong></p>
+        <ul>
+          <li><strong>Rounds 1-3:</strong> Judged by Event Heads.</li>
+          <li><strong>Grand Finale:</strong> Combined scoring system (Judges' Scores + Audience Votes).</li>
+          <li>Audience votes hold weightage in deciding the final winner.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round I: Filtration</h3>
+        <p>The first round tests creativity and timing through a Google form.</p>
+        <ul>
+          <li><strong>Selection Criteria:</strong> IMAGINATION</li>
+          <li>Most imaginative responses move forward to Round II.</li>
+          <li>Responses favored on a first come first serve basis.</li>
+          <li>Quick submission after form release is important.</li>
+          <li>Put your imagination to use and let the ingenuity flow!</li>
+        </ul>
+
+        <h3>Round II: Screening</h3>
+        <p>Filtered candidates design PPTs on the provided IGNITE Template.</p>
+        <ul>
+          <li>Choose ANY idea that comes to your mind.</li>
+          <li>Judged on creativity, proactiveness, and content.</li>
+          <li><strong>Selection Criteria:</strong> CREATIVITY + PROACTIVENESS + CONTENT</li>
+          <li>Proactiveness to complete the PPT supplements your creativity.</li>
+        </ul>
+
+        <h3>Round III: Elimination</h3>
+        <p>Screened candidates present their PPTs in front of judges.</p>
+        <ul>
+          <li>Judged on oration, enthusiasm, and presentation skills.</li>
+          <li><strong>Selection Criteria:</strong> ORATION + PRESENTATION + WITTINESS</li>
+          <li>Showcase your presentation skills and enlighten us with your ideas.</li>
+        </ul>
+
+        <h3>Round IV: Grand Finale</h3>
+        <p>Welcome to the ENDGAME - the Crown Jewel of Vortex 14.0!</p>
+        <ul>
+          <li>Finalists present in front of respected judges.</li>
+          <li><strong>Selection Criteria:</strong> INGENUITY + RHETORICS + STAGE PRESENCE + RESILIENCE</li>
+          <li>Finalists will tackle a SURPRISE TASK given on the final day.</li>
+          <li>Grand, illustrious prize awaits the victors!</li>
+        </ul>
+
+        <h3>Presentation Rules:</h3>
+        <ul>
+          <li>Total 22 slides: 1 intro + 20 content + 1 time-up slide.</li>
+          <li>Cannot exceed 5 minutes total.</li>
+          <li>Slides cannot be skipped, paused, or shuffled during the presentation.</li>
+          <li>Topic can be anything but must not be controversial or hurtful.</li>
+          <li>No foul or NSFW language/content - leads to immediate disqualification.</li>
+          <li>Must use the provided template; effects should not tamper with slide timing.</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Prajval Barve</h3>
+            <p>Overall Event Head<br><i class="fa-solid fa-phone"></i> +91 97665 29579</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

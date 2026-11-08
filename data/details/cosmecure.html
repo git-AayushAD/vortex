@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmecure | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events" class="active">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>PHARMA SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Cosmecure</span></h1>
+        <p class="event-tagline">From concept to market-ready cosmetic product through formulation and pitching</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        <p><strong>Event Overview:</strong> Cosmecure challenges you to bring your scientific creativity to life. Get through fun games in Round 1, define your vision in product formulation by submitting an abstract, and execute your idea in Round 3 with hands-on formulation development. Finally, pitch your idea to industry experts.</p>
+        
+        <p><strong>Participation:</strong> Participants can compete in pairs or individually.</p>
+
+        <p style="color: #ff4757; font-weight: 600;">Important: Punctuality is of utmost importance. Use of mobile phones or any smart-appliances is strictly prohibited in Round 1.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Cosmetics Themed Games</h3>
+        <p>An exciting fast-paced challenge where cosmetics knowledge meets fun!</p>
+        
+        <p><strong>Stage A: Cosmetics Themed Bingo</strong></p>
+        <ul>
+          <li>You will receive a bingo card with 25 cosmetic related terms.</li>
+          <li>The host will display a clue for each term which you will have 15 seconds to guess.</li>
+          <li>If you have the correct term on your bingo card, mark it off.</li>
+          <li>Winning patterns: full row (horizontal or vertical), diagonal line, corners, full card (blackout).</li>
+          <li>When you complete a pattern, call out 'bingo!' and verify your answers with the host.</li>
+          <li>The first 20-30 teams (depending on number of participants) to complete the pattern and call 'bingo!' will have an advantage.</li>
+        </ul>
+
+        <p><strong>Stage B: Fastest Five</strong></p>
+        <ul>
+          <li>The host will distribute sheets having 5 categories.</li>
+          <li>Participants will be given 3 minutes to write 5 names of each category given (e.g., pharmaceutical solvents).</li>
+          <li>The sheets will be collected and later assessed by the host.</li>
+          <li>Decision by the hosts shall be final and binding.</li>
+        </ul>
+
+        <p><strong>Stage C: Emoji Round</strong></p>
+        <ul>
+          <li>The host will display questions containing a series of emojis describing a cosmetic product.</li>
+          <li>Participants must raise their hands immediately if they wish to answer.</li>
+          <li>The host will call out and only then the participants will be permitted to answer.</li>
+          <li>3 points for correct answer, 1 point deducted for incorrect answers.</li>
+          <li>Any prompting or answering out of turn will lead to disqualification.</li>
+          <li>Cumulative scores from stages A, B and C will lead to selection for next round.</li>
+        </ul>
+
+        <h3>Round 2: Abstract Submission</h3>
+        <p>In this round, you will be given a problem statement regarding an issue in the cosmetic or pharmaceutical industry. Use your technical and pharmaceutical knowledge to propose a solution.</p>
+        <p><strong>Guidelines:</strong></p>
+        <ul>
+          <li>Format: Times New Roman, Font Size 12, maximum 4 pages.</li>
+          <li>Submission: Submit via email in PDF format (Deadline TBA).</li>
+          <li>Plagiarism: Strictly prohibited and will result in disqualification.</li>
+          <li>Judging: Based on relevance, creativity and technical accuracy.</li>
+          <li>Most appropriate submissions will qualify for Formulation Round.</li>
+          <li>Must include a list of ingredients and exact quantities required for proposed formulation.</li>
+          <li>Upon selection, these ingredients will be provided by hosts in Round 3.</li>
+        </ul>
+
+        <h3>Round 3: Formulation Round</h3>
+        <p>This is where theory meets reality. Transform your submitted abstract into a tangible product within the lab, then pitch to industry experts.</p>
+        
+        <p><strong>Stage A: Practical Formulation</strong></p>
+        <ul>
+          <li>Qualified participants will work in prestigious lab of ICT Mumbai to demonstrate practical skills.</li>
+          <li>Create the product you previously proposed in your abstract.</li>
+          <li>Finalists will be provided with all necessary apparatus and ingredients.</li>
+          <li>All finalists must bring: lab coats, safety goggles, hand gloves.</li>
+          <li>Must maintain proper lab decorum and adhere to all safety protocols.</li>
+        </ul>
+
+        <p><strong>Stage B: Marketing and Pitching Challenge</strong></p>
+        <ul>
+          <li><strong>Presentation Time:</strong> 5-7 minutes.</li>
+          <li><strong>Presentation Must Include:</strong>
+            <ul>
+              <li>Product Overview: What is your product and what makes it special?</li>
+              <li>Target Market: Who is your target audience?</li>
+              <li>Selling Points: Why is your product viable and how will it succeed in the market?</li>
+            </ul>
+          </li>
+          <li><strong>Judging Criteria:</strong>
+            <ul>
+              <li><strong>Product Quality and Innovation:</strong> Functionality (performance), Quality (well made), Innovation (uniqueness/new solution).</li>
+              <li><strong>Pitching Skills:</strong> Clarity/confidence, Engagement (active answering), Presentation structure and visuals/demos.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Avani Kondejkar</h3>
+            <p>OEH-Pharma<br><i class="fa-solid fa-phone"></i>+91 76665 61168</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>

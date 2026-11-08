@@ -1,0 +1,149 @@
+.checkout-container {
+    max-width: 1000px;
+    margin: 100px auto 40px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.checkout-form-section, .checkout-summary-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--btn-wrapper-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+/* Summary UI */
+.checkout-events {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.checkout-event-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--btn-wrapper-bg);
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+}
+
+.checkout-event-details strong {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.checkout-event-details span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.summary-totals {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+}
+
+.summary-row.discount {
+    color: var(--primary-cyan);
+}
+
+.summary-row.total {
+    font-weight: 700;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+@media (max-width: 800px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Moves the order summary to the top on mobile so they see what they are buying first */
+    .checkout-summary-section {
+        order: -1;
+    }
+}
+
+/* Fixes invisible dropdown options by forcing them to use the theme's background */
+.form-select option {
+    background-color: var(--glass-bg);
+    color: var(--text-main);
+}

@@ -1,0 +1,207 @@
+:root[data-theme="dark"] {
+    --bg-color: #0c0c0e;
+    --nav-bg: rgba(12, 12, 14, 0.85);
+    --primary-cyan: #42b9f5;
+    --primary-purple: #bd00ff;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --glass-bg: rgba(20, 20, 25, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(0, 0, 0, 0.5);
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --theme-bg-image: url('../photos/vortex_D.png');
+    --bg-opacity: 0.25; /* Keep dark mode subtle */
+}
+
+:root[data-theme="light"] {
+    --bg-color: #f4f4f6;
+    --nav-bg: rgba(244, 244, 246, 0.85);
+    --primary-cyan: #008996;
+    --primary-purple: #8b00cc;
+    --text-main: #111111;
+    --text-muted: rgba(0, 0, 0, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(0, 0, 0, 0.15);
+    --input-bg: rgba(255, 255, 255, 1);
+    --card-bg: rgba(0, 0, 0, 0.03);
+    --theme-bg-image: url('../photos/vortex_L.png');
+    --bg-opacity: 0.5; /* Increased opacity for light mode visibility */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color); /* The base color */
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 1rem 3rem;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    position: relative;
+}
+
+/* 
+  The Blurred Background Layer
+  Z-index: 0 puts it ABOVE the body's solid background color,
+  but BELOW the registration form. Pointer-events none prevents it from blocking clicks.
+*/
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: var(--theme-bg-image);
+    background-size: contain; /* Changed from 'cover' to 'contain' to stop it zooming in so much */
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(0.85); /* Scales the image down further to "zoom out" */
+    filter: blur(10px); /* Slightly reduced blur so the logo shapes are more recognizable */
+    opacity: var(--bg-opacity); /* Uses the variable defined above */
+    z-index: 0;
+    pointer-events: none;
+    transition: background-image 0.4s ease, opacity 0.4s ease;
+}
+
+/* The ambient glowing orbs */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(189, 0, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(66, 185, 245, 0.15), transparent 40%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+h1, h2, h3, .font-heading { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+.gradient-text { background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Important: Brings UI above the blurred background */
+.navbar, .registration-container {
+    position: relative;
+    z-index: 10;
+}
+
+.navbar {
+    position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+    background: var(--nav-bg); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border); 
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.back-link {
+    color: var(--text-main); text-decoration: none; font-weight: 600;
+    font-size: 0.9rem; transition: color 0.3s;
+}
+.back-link:hover { color: var(--primary-cyan); }
+
+.icon-btn {
+    background: none; border: none; color: var(--text-main);
+    font-size: 1.3rem; cursor: pointer; transition: color 0.3s, transform 0.2s;
+}
+.icon-btn:hover { color: var(--primary-cyan); transform: scale(1.1); }
+
+/* Main Container */
+.registration-container {
+    width: 100%; max-width: 650px;
+    background: var(--glass-bg); backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border); border-radius: 20px;
+    padding: 2.5rem; overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.registration-container::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+}
+
+.form-header { text-align: center; margin-bottom: 2rem; }
+.form-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+.form-header p { color: var(--text-muted); font-size: 0.9rem; }
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--text-muted); margin-bottom: 0.5rem; font-family: 'Orbitron', sans-serif; }
+
+.form-control {
+    width: 100%; background: var(--input-bg); border: 1px solid var(--glass-border);
+    color: var(--text-main); padding: 0.9rem 1.2rem; border-radius: 8px;
+    font-family: 'Inter', sans-serif; font-size: 1rem; transition: all 0.3s ease;
+}
+.form-control:focus { outline: none; border-color: var(--primary-cyan); box-shadow: 0 0 10px rgba(66, 185, 245, 0.2); }
+
+/* Reference Images */
+.reference-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.ref-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 8px; padding: 10px; text-align: center; }
+.ref-title { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; }
+.ref-card img { width: 100%; max-height: 180px; object-fit: contain; border-radius: 4px; }
+.qr-card { max-width: 250px; margin: 0 auto 1.5rem auto; }
+
+.divider { border: 0; height: 1px; background: var(--glass-border); margin: 2rem 0; }
+
+/* Size Options */
+.size-selector { display: flex; flex-wrap: wrap;justify-content: center; gap: 10px; }
+.size-label { position: relative; cursor: pointer; }
+.size-label input { position: absolute; opacity: 0; cursor: pointer; }
+.size-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 50px; height: 40px; background: var(--input-bg);
+    border: 1px solid var(--glass-border); border-radius: 8px;
+    font-weight: 600; transition: all 0.3s ease; color: var(--text-main);
+}
+.size-label input:checked ~ .size-btn { background: var(--primary-cyan); color: #000; border-color: var(--primary-cyan); box-shadow: 0 0 15px rgba(66, 185, 245, 0.5); transform: translateY(-2px); }
+
+/* Academic Year Options */
+.academic-year { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.year { position: relative; cursor: pointer; }
+.year input { position: absolute; opacity: 0; cursor: pointer; }
+.year-btn {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 15px; height: 40px; background: var(--input-bg);
+    border: 1px solid var(--glass-border); border-radius: 8px;
+    font-weight: 600; transition: all 0.3s ease; color: var(--text-main);
+}
+.academic-year .year input:checked ~ .year-btn { background: var(--primary-cyan); color: #000; border-color: var(--primary-cyan); box-shadow: 0 0 15px rgba(66, 185, 245, 0.5); transform: translateY(-2px); }
+
+/* Uploads */
+.upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 500px) { .upload-grid, .reference-grid { grid-template-columns: 1fr; } }
+
+.file-upload-wrapper {
+    position: relative; width: 100%; height: 120px; background: var(--input-bg);
+    border: 1px dashed var(--text-muted); border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s ease; overflow: hidden;
+}
+.file-upload-wrapper:hover { border-color: var(--primary-cyan); }
+.file-upload-wrapper input[type="file"] { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
+
+.upload-placeholder { text-align: center; color: var(--text-muted); z-index: 5; }
+.upload-placeholder i { font-size: 1.5rem; margin-bottom: 5px; color: var(--primary-cyan); }
+.upload-placeholder span { font-size: 0.75rem; display: block; }
+
+.image-preview {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 8; display: none; opacity: 0; transition: opacity 0.4s ease;
+}
+
+.captcha-container { margin-top: 1rem; display: flex; justify-content: center; }
+
+.submit-btn {
+    width: 100%; padding: 1rem; margin-top: 1.5rem;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+    color: #fff; border: none; border-radius: 8px; font-family: 'Orbitron', sans-serif;
+    font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(66, 185, 245, 0.5); }
+
+/* Honeypot */
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+}

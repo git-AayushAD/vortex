@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/checkout.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+            <img src="photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+        </a>
+        <div class="nav-controls">
+            <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <main class="checkout-container">
+        <div class="checkout-grid">
+            
+            <!-- LEFT COLUMN: The Form -->
+            <div class="checkout-form-section">
+                <h2 class="font-heading" style="margin-bottom: 1.5rem;">Participant <span class="gradient-text">Details</span></h2>
+                
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="collegeSelect">College Name</label>
+                        <select id="collegeSelect" class="form-control form-select" required>
+                            <option value="" disabled selected>Select your institute...</option>
+                            <option value="Institute of Chemical Technology (ICT), Mumbai">Institute of Chemical Technology (ICT), Mumbai</option>
+                            <option value="Veermata Jijabai Technological Institute (VJTI)">Veermata Jijabai Technological Institute (VJTI)</option>
+                            <option value="Other">Other...</option>
+                        </select>
+                    </div>
+
+                    <!-- Hidden by default, reveals if "Other" is selected -->
+                    <div class="form-group" id="otherCollegeGroup" style="display: none;">
+                        <label for="otherCollege">Enter College Name</label>
+                        <input type="text" id="otherCollege" class="form-control" placeholder="Type your college name...">
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="proceedBtn">Proceed to Payment</button>
+                </form>
+            </div>
+
+            <!-- RIGHT COLUMN: Order Summary -->
+            <div class="checkout-summary-section">
+                <h3 class="font-heading" style="font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">Order Summary</h3>
+                
+                <div id="checkoutEventList" class="checkout-events">
+                    <!-- Events will be injected here by JS -->
+                </div>
+
+                <div class="summary-totals">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="checkoutSubtotal">₹0</span>
+                    </div>
+                    <div class="summary-row discount">
+                        <span id="checkoutDiscountLabel">Discount (0%)</span>
+                        <span id="checkoutDiscount">-₹0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Payable</span>
+                        <span id="checkoutTotal" style="font-size: 1.5rem; color: var(--primary-cyan);">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="./scripts/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+/* ===== Vortex 14.0 — About Page Enhancements ===== */
+
+.info-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.info-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--c), transparent);
+}
+
+.info-card::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c) 30%, transparent), transparent 70%);
+    pointer-events: none;
+}
+
+.team-card {
+    position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 380px;
+}
+
+.team-card:hover {
+    border-color: var(--c) !important;
+    box-shadow: 0 14px 34px color-mix(in srgb, var(--c) 28%, transparent) !important;
+}
+
+/* ===== REMOVE IMAGE FILTERS ===== */
+body .team-card img,
+body .team-img-wrapper img {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    mix-blend-mode: normal !important;
+    opacity: 1 !important;
+}
+
+/* ===== TEAM IMAGE STYLING ===== */
+.team-img-wrapper {
+    position: relative;
+    background: radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--c) 25%, #0a1c22), #000 70%);
+}
+
+.team-card:hover .team-img-wrapper::after {
+    animation: scanOnce 2.5s ease-in-out forwards;
+}
+
+.team-img-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: var(--c);
+    box-shadow: 0 0 14px var(--c);
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+@keyframes scanOnce {
+    0% { transform: translateY(-4px); opacity: 1; }
+    75% { opacity: 1; }
+    100% { transform: translateY(300px); opacity: 0; }
+}
+
+.role {
+    display: block;
+    margin: 4px 0 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--c);
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.convenor-grid {
+    grid-template-columns: minmax(0, 340px);
+    justify-content: center;
+}
+
+/* ===== OPAQUE OVERRIDES FOR CARDS AND FOOTER ===== */
+:root[data-theme="dark"] .team-card { background: #141419 !important; }
+:root[data-theme="dark"] footer { background: #0a0a0f !important; }
+:root[data-theme="dark"] .info-card { background: #141419 !important; }
+
+:root[data-theme="light"] .team-card { background: #ffffff !important; }
+:root[data-theme="light"] footer { background: #e6e6eb !important; }
+:root[data-theme="light"] .info-card { background: #ffffff !important; }
+
+/* ===== FIXED TEAM CARD LAYOUT & IMAGE FIX ===== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.team-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 18px;
+}
+
+/* 1. Base wrapper applies to ALL images first */
+.team-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px; 
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* 2. Specific override applies ONLY to the convenor grid */
+.convenor-grid .team-img-wrapper {
+    height: auto;
+    aspect-ratio: 4 / 5; 
+}
+
+.team-img-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; 
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    padding: 1.25rem;
+    box-sizing: border-box;
+}
+
+.team-info h4 { margin: 0 0 0.5rem; line-height: 1.35; overflow-wrap: anywhere; }
+.team-info .role { display: block; line-height: 1.5; margin-bottom: 0.75rem; }
+.team-info p { margin: 0; line-height: 1.65; overflow-wrap: break-word; word-break: normal; }
+
+/* ===== RESPONSIVE LAYOUT ===== */
+@media (max-width: 900px) {
+    .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .convenor-grid { grid-template-columns: minmax(0, 340px); justify-content: center; }
+}
+
+@media (max-width: 560px) {
+    .team-grid { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+    
+    /* Sets the mobile height for the core team */
+    .team-img-wrapper { height: 280px; }
+    
+    /* Keeps the convenor proportional */
+    .convenor-grid .team-img-wrapper { height: auto; }
+    
+    .convenor-grid { grid-template-columns: minmax(0, 1fr); justify-content: center; }
+}
+
+/* ===== FIX ABOUT SECTION INFO CARDS ===== */
+.about-split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-bottom: 3rem;
+}
+
+.about-split .info-card {
+    position: relative;
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 1.75rem;
+    border-radius: 18px;
+    overflow: hidden;
+    line-height: 1.65;
+}
+
+.about-split .info-card h3 { position: relative; margin: 0 0 0.75rem; line-height: 1.35; overflow-wrap: break-word; }
+.about-split .info-card p { position: relative; margin: 0 0 1rem; line-height: 1.65; overflow-wrap: break-word; }
+.about-split .info-card ul { position: relative; margin: 0.75rem 0 0; padding-left: 1.25rem; }
+.about-split .info-card li { margin-bottom: 0.5rem; line-height: 1.6; }
+.about-split .info-card .address-block { position: relative; display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; overflow-wrap: anywhere; }
+
+@media (max-width: 768px) {
+    .about-split { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+    .about-split .info-card { padding: 1.25rem; }
+}
+
+/* ===== INCREASED HITBOXES FOR EASY CLICKING ===== */
+.nav-links a, 
+.footer-col a, 
+.icon-btn, 
+.menu-btn,
+.social-links a {
+    position: relative;
+    z-index: 10;
+    padding: 8px;
+    margin: -8px;
+}
+
+/* ===== OPTIMIZED GLOWING CURSOR ===== */
+/* ===== HIDE DEFAULT CURSOR ENTIRELY ===== */
+* {
+    cursor: none !important;
+}
+
+/* ===== NEW RING & DOT CURSOR ===== */
+#glowing-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px; /* Size of the outer ring */
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 243, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.6), inset 0 0 8px rgba(0, 243, 255, 0.4);
+    pointer-events: none;
+    z-index: 99999;
+    will-change: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease-out, border-color 0.15s, box-shadow 0.15s;
+}
+
+/* The solid glowing dot in the center */
+#glowing-cursor::after {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: rgba(0, 243, 255, 1);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.9);
+    transition: background 0.15s, transform 0.15s;
+}
+
+/* Disable entirely on phones so native touch works normally */
+@media (pointer: coarse) {
+    * { cursor: auto !important; } 
+    #glowing-cursor { display: none !important; }
+}
+
+@media (pointer: coarse) {
+    #glowing-cursor { display: none !important; }
+}

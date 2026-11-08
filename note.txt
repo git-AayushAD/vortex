@@ -1,0 +1,1 @@
+theme.js file is for toggling the dark and light mode theme

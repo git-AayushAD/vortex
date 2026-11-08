@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advent | Vortex 14.0</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/event-detail.css" />
+
+    <style>
+      html[data-theme="light"] * { text-shadow: none !important; }
+      html[data-theme="light"] .nav-logo img { filter: none !important; box-shadow: none !important; }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../photos/vortex_L.png" alt="Vortex 14.0" class="logo-light" />
+        <img src="../../photos/vortex_D.png" alt="Vortex 14.0" class="logo-dark" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../index.html#events">Events</a></li>
+        <li><a href="../../index.html#faq">FAQ</a></li>
+        <li><a href="../../about.html">About</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Toggle Theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        <button class="menu-btn" id="menuToggleBtn" aria-label="Toggle Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="ambient-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="electrons-container">
+        <div class="electron e-1"></div>
+        <div class="electron e-2"></div>
+        <div class="electron e-3"></div>
+      </div>
+    </div>
+
+    <main class="main-container">
+      <div class="event-header">
+        <h4>GENERAL SERIES</h4>
+        <h1 class="font-heading"><span class="gradient-text">Advent</span></h1>
+        <p class="event-tagline">Advertising competition across solo and team categories</p>
+        
+        <br>
+        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+          <a href="../../index.html#events" class="action-btn btn-info back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Events
+          </a>
+        </div>
+      </div>
+
+      <div class="info-grid" style="display: flex; justify-content: center;">
+        <div class="info-card" style="width: 100%; max-width: 500px;">
+          <h4><i class="fa-solid fa-trophy"></i> Prize Pool & Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-angle-right"></i> <div><strong>Prize Pool:</strong> ₹25,000</div></li>
+            <li><i class="fa-solid fa-location-dot"></i> <div style="font-size: 0.85rem;">Offline rounds will be held at ICT Mumbai campus. Dates TBA. Exact details provided post-registration.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Format & Guidelines</h2>
+        
+        <p><strong>Format:</strong> Advent will be held in two categories:</p>
+        <ul>
+          <li>Team participation (3-4 members per team)</li>
+          <li>Solo Participation</li>
+        </ul>
+
+        <p><strong>Key Rules:</strong></p>
+        <ul>
+          <li>The Advent team will judge rounds 1 and 3.</li>
+          <li>Round 2 will be judged by a Panel of judges.</li>
+          <li>Submissions for Round 1 via vortexadvent@gmail.com.</li>
+          <li>Rounds 2 and 3 are conducted offline during Vortex week (Dates TBA).</li>
+        </ul>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Rules & Rounds</h2>
+        
+        <h3>Round 1: Screening</h3>
+        <p><strong>Solo & Team:</strong> Participants choose between poster, jingle, reel, or animation video.</p>
+        <ul>
+          <li><strong>Poster:</strong> Create your own product/company with brand name, logo, and tagline. Judged on branding strategy and originality.</li>
+          <li><strong>Jingle/Reel/Animation:</strong> Existing brand names allowed. Judged on originality and storytelling creativity. Non-participant individuals can be featured.</li>
+          <li><strong>Submission:</strong> Via Google Form (Deadline TBA).</li>
+        </ul>
+
+        <h3>Round 2: Advert Presentation</h3>
+        <p><strong>Solo Participants:</strong> Option to form a team with other solos or join existing 3-member teams.</p>
+        <ul>
+          <li><strong>Team:</strong> Category announced a day prior. Prepare impromptu skit (max 1.5 min) or jingle. Props allowed.</li>
+          <li>Judged on Creativity, Execution, Ingenuity, and Overall Impression.</li>
+          <li>Selected teams advance to Round 3 based on Round 2 scores.</li>
+        </ul>
+
+        <h3>Round 3: Quiz</h3>
+        <p><strong>Format:</strong> 3 sub-rounds, 2 questions per team each:</p>
+        <ul>
+          <li>Identifying logos</li>
+          <li>Identifying ads</li>
+          <li>Identifying taglines</li>
+        </ul>
+        <p><strong>Scoring:</strong></p>
+        <ul>
+          <li>Direct correct: +10 points</li>
+          <li>Direct incorrect: -10 points</li>
+          <li>Passed to next team: No penalty</li>
+          <li>First pass attempt: 5 points | Second: 3 points | Third: 2 points</li>
+          <li>Incorrect pass attempt: Negative equal to attempted value</li>
+        </ul>
+        <p><strong>Winner:</strong> Highest cumulative score from Rounds 2 and 3.</p>
+      </div>
+
+      <div class="content-section">
+        <h2 class="font-heading">Organising Team</h2>
+        <div class="organizer-grid">
+          <div>
+            <h3>Prajval Barve</h3>
+            <p>OEH-General<br><i class="fa-solid fa-phone"></i> +91 97665 29579</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+          <div>
+            <h3>TBA</h3>
+            <p>Event Head<br><i class="fa-solid fa-phone"></i> TBA</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col brand">
+          <h3>Vortex Events</h3>
+          <p>ICT Mumbai's Premier Chemical Engineering Fest</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem">Theme : EquiNexus</p>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <a href="../../index.html#events">Events</a>
+          <a href="../../index.html#faq">FAQ</a>
+          <a href="../../about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <p><i class="fa-regular fa-envelope"></i> vortexsecretary.ta@ug.ictmumbai.edu.in</p>
+          <div class="contact-details">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem;">Secretary Contact Details:</p>
+            <p><i class="fa-solid fa-phone"></i> Kshitij Joshi: 9763172716</p>
+            <p><i class="fa-solid fa-phone"></i> Rupak Humad: 9967952108</p>
+            <p><i class="fa-solid fa-location-dot"></i> ICT Mumbai, Matunga, Mumbai - 400019</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vortex_ict?cplk=MXExc2M3ZTZqZWhlOA=="><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="glowing-cursor"></div>
+
+    <script src="../../scripts/event-detail.js" defer></script>
+  </body>
+</html>
