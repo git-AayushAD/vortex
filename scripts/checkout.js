@@ -12,20 +12,20 @@ htmlElement.setAttribute("data-theme", savedTheme);
 if (themeIcon) themeIcon.className = savedTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
 
 themeBtn?.addEventListener("click", () => {
-  const currentTheme = htmlElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-  htmlElement.setAttribute("data-theme", newTheme);
-  if (themeIcon) themeIcon.className = newTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
-  localStorage.setItem("vortex_theme", newTheme);
+    const currentTheme = htmlElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    htmlElement.setAttribute("data-theme", newTheme);
+    if (themeIcon) themeIcon.className = newTheme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    localStorage.setItem("vortex_theme", newTheme);
 });
 
 // =========================================
 // 2. MATH & CART LOADING
 // =========================================
 const parsePrice = (price) => {
-  if (typeof price === "number") return price;
-  if (!price) return 0;
-  return Number(String(price).replace(/[^0-9.]/g, '')) || 0;
+    if (typeof price === "number") return price;
+    if (!price) return 0;
+    return Number(String(price).replace(/[^0-9.]/g, '')) || 0;
 };
 
 const formatINR = (amount) => `₹${Number(amount || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
@@ -34,8 +34,8 @@ let cart = [];
 try { cart = JSON.parse(localStorage.getItem("vortex_cart") || "[]"); } catch { cart = []; }
 
 cart = cart.map((item) => {
-  const eventRecord = eventsData.find((e) => e.id === item.id);
-  return { ...item, price: eventRecord ? parsePrice(eventRecord.price) : 0 };
+    const eventRecord = eventsData.find((e) => e.id === item.id);
+    return { ...item, price: eventRecord ? parsePrice(eventRecord.price) : 0 };
 });
 
 if (cart.length === 0) {
@@ -99,7 +99,7 @@ const renderOrder = () => {
         rightSide.style.display = "flex";
         rightSide.style.alignItems = "center";
         rightSide.style.gap = "1.2rem";
-        rightSide.style.flexShrink = "0"; // Prevents the button from being squished off-screen
+        rightSide.style.flexShrink = "0";
 
         const price = document.createElement("strong");
         price.textContent = formatINR(item.price);
@@ -113,7 +113,7 @@ const renderOrder = () => {
         removeBtn.style.color = "#ff4757";
         removeBtn.style.fontSize = "1.2rem";
         removeBtn.style.cursor = "pointer";
-        removeBtn.style.padding = "5px"; // Gives it a better click area
+        removeBtn.style.padding = "5px";
         removeBtn.style.transition = "transform 0.2s, color 0.2s";
         removeBtn.setAttribute("aria-label", `Remove ${item.name}`);
 
@@ -147,6 +147,7 @@ const renderOrder = () => {
 
     const billing = getCartBilling();
     document.getElementById("checkoutSubtotal").textContent = formatINR(billing.subtotal);
+    // FIXED: The missing multiplication asterisk is back!
     document.getElementById("checkoutDiscountLabel").textContent = `Discount (${billing.discountPercent * 100}%)`;
     document.getElementById("checkoutDiscount").textContent = `-${formatINR(billing.discount)}`;
     document.getElementById("checkoutTotal").textContent = formatINR(billing.total);
@@ -156,7 +157,7 @@ const renderOrder = () => {
 renderOrder();
 
 // =========================================
-// 5. FORM LOGIC & SUBMISSION
+// 5. FORM LOGIC & SUBMISSION TO VERCEL
 // =========================================
 const collegeSelect = document.getElementById("collegeSelect");
 const otherCollegeGroup = document.getElementById("otherCollegeGroup");
@@ -177,7 +178,7 @@ if (collegeSelect) {
 
 const checkoutForm = document.getElementById("checkoutForm");
 if (checkoutForm) {
-    checkoutForm.addEventListener("submit", (e) => {
+    checkoutForm.addEventListener("submit", async (e) => {
         e.preventDefault(); 
         
         let finalCollege = collegeSelect.value;
@@ -196,7 +197,41 @@ if (checkoutForm) {
             billing: getCartBilling()
         };
 
-        localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
-        window.location.href = "payment.html";
+        // 1. Lock the button and show loading state
+        const proceedBtn = document.getElementById("proceedBtn");
+        const originalText = proceedBtn.textContent;
+        proceedBtn.textContent = "Processing...";
+        proceedBtn.disabled = true;
+
+        try {
+            // 2. Send data to your live Vercel backend
+            const response = await fetch("https://vortex-backend-ten.vercel.app/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(participantData)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // 3. Save to local storage for the payment page
+                localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
+                
+                // 4. Redirect to payment gateway
+                window.location.href = "payment.html";
+            } else {
+                alert("Something went wrong on the server. Please try again.");
+                proceedBtn.textContent = originalText;
+                proceedBtn.disabled = false;
+            }
+
+        } catch (error) {
+            console.error("Network Error:", error);
+            alert("Failed to connect to the server. Check your internet.");
+            proceedBtn.textContent = originalText;
+            proceedBtn.disabled = false;
+        }
     });
 }
