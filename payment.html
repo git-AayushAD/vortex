@@ -137,6 +137,11 @@
                     body: JSON.stringify({ amount: checkoutData.billing.total })
                 });
 
+                if (!response.ok) {
+                    const errText = await response.text();
+                    throw new Error(`Server Error (${response.status}): ` + errText);
+                }
+
                 const data = await response.json();
 
                 if (!data.success) {
@@ -216,7 +221,7 @@
                 console.error("Gateway Error:", error);
                 statusText.textContent = "Gateway Error";
                 statusText.style.color = "#ff4757";
-                subText.textContent = "Failed to connect to the payment server. Check your internet connection.";
+                subText.textContent = error.message || "Failed to connect to the payment server.";
                 spinner.style.animationPlayState = "paused";
                 spinner.style.borderTopColor = "#ff4757";
                 retryBtn.style.display = "block";
