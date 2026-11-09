@@ -113,7 +113,7 @@
         // Kick user back if they directly navigated here without checking out
         if (!checkoutData) {
             alert("No pending payment found. Redirecting to home.");
-            window.location.href = "index.html";
+            window.location.href = "./index.html";
         }
 
         // ==========================================
@@ -189,7 +189,7 @@
                         // TODO: Redirect to a fancy Success/Ticket page later
                         setTimeout(() => {
                             alert("Registration Complete! We will now redirect you to the home page.");
-                            window.location.href = "index.html";
+                            window.location.href = "./index.html";
                         }, 2000);
                     }
                 };
