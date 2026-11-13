@@ -116,10 +116,7 @@
             window.location.href = "./index.html";
         }
 
-        // ==========================================
-        // 🚨 IMPORTANT: REPLACE WITH YOUR KEY 🚨
-        // ==========================================
-        const RAZORPAY_KEY_ID = "rzp_test_TzXYIuY47SGvh0"; // Put your test key here!
+        const RAZORPAY_KEY_ID = "rzp_test_TzXYIuY47SGvh0";
 
         async function startPayment() {
             try {
@@ -166,32 +163,51 @@
                     },
                     modal: {
                         ondismiss: function() {
-                            // If the user clicks the "X" to close the popup
                             statusText.textContent = "Payment Cancelled";
                             subText.textContent = "You closed the payment window.";
                             spinner.style.animationPlayState = "paused";
                             retryBtn.style.display = "block";
                         }
                     },
-                    handler: function (response) {
-                        // 4. Payment Success Handling
+                    handler: async function (response) {
                         console.log("Payment Successful!", response);
                         
+                        statusText.textContent = "Verifying Payment...";
+                        subText.textContent = "Updating your registration status...";
+                        spinner.style.borderTopColor = "var(--success-green)";
+
+                        try {
+                            // Send payment details to backend to mark DB entry as "Paid"
+                            const verifyRes = await fetch("https://vortex-backend-ten.vercel.app/api/verify-payment", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    razorpay_order_id: response.razorpay_order_id,
+                                    razorpay_payment_id: response.razorpay_payment_id,
+                                    razorpay_signature: response.razorpay_signature,
+                                    email: checkoutData.email,
+                                    phone: checkoutData.phone
+                                })
+                            });
+
+                            const verifyData = await verifyRes.json();
+                            if (!verifyData.success) {
+                                console.error("Verification warning:", verifyData.message);
+                            }
+                        } catch (err) {
+                            console.error("Failed to update status in DB:", err);
+                        }
+
                         // Update UI
                         statusText.textContent = "Payment Successful!";
                         statusText.style.color = "var(--success-green)";
                         subText.textContent = `Payment ID: ${response.razorpay_payment_id}`;
-                        spinner.style.borderTopColor = "var(--success-green)";
                         spinner.style.animationPlayState = "paused";
                         
-                        // Optionally record the payment ID into the checkout data
                         checkoutData.paymentId = response.razorpay_payment_id;
                         localStorage.setItem("vortex_checkout_data", JSON.stringify(checkoutData));
-
-                        // Clear the cart since the purchase is complete
                         localStorage.removeItem("vortex_cart");
                         
-                        // TODO: Redirect to a fancy Success/Ticket page later
                         setTimeout(() => {
                             alert("Registration Complete! We will now redirect you to the home page.");
                             window.location.href = "./index.html";
@@ -203,7 +219,6 @@
                 const rzp = new Razorpay(options);
                 
                 rzp.on('payment.failed', function (response){
-                    // Payment Failed Handling
                     console.error("Payment Failed", response.error);
                     statusText.textContent = "Payment Failed";
                     statusText.style.color = "#ff4757";
@@ -231,7 +246,7 @@
         // Attach retry listener
         retryBtn.addEventListener("click", startPayment);
 
-        // Auto-start payment process 1 second after page loads (for visual smoothness)
+        // Auto-start payment process 1 second after page loads
         window.addEventListener("DOMContentLoaded", () => {
             setTimeout(startPayment, 1000);
         });
