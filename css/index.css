@@ -128,7 +128,35 @@ h1, h2, h3, h4, .font-heading { font-family: "Orbitron", sans-serif; font-weight
 .event-card:hover { transform: translateY(-8px); border-color: rgba(0,243,255,0.4); box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 20px rgba(0,243,255,0.15); }
 .event-info h3 { font-size: 1.3rem; margin-bottom: 0.2rem; color: var(--text-main); }
 .event-info p { font-size: 0.85rem; color: var(--text-muted); }
-.event-price { color: var(--primary-cyan); font-weight: 600; margin-top: 0.5rem; font-family: "Orbitron", sans-serif; }
+.event-price {
+  color: var(--primary-cyan);
+  font-weight: 600;
+  margin-top: 0.5rem;
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.old-price {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.discount-badge {
+  background: rgba(189, 0, 255, 0.18);
+  border: 1px solid rgba(189, 0, 255, 0.4);
+  color: var(--primary-cyan);
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
 
 .action-btn { position: relative; z-index: 10; background: transparent; border: 1px solid; padding: 8px 12px; border-radius: 20px; font-family: "Inter", sans-serif; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-block; margin-top: 15px; }
 .btn-info { border-color: var(--primary-cyan); color: var(--primary-cyan); text-decoration: none; text-align: center; }

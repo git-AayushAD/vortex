@@ -54,7 +54,7 @@
         
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .retry-btn {
+        .back-btn {
             display: none;
             margin-top: 1.5rem;
             width: 100%;
@@ -70,7 +70,7 @@
             transition: opacity 0.3s;
         }
         
-        .retry-btn:hover {
+        .back-btn:hover {
             opacity: 0.9;
         }
     </style>
@@ -98,7 +98,7 @@
             <h2 class="font-heading" id="statusText" style="font-size: 1.2rem; color: var(--text-main);">Initializing Secure Gateway...</h2>
             <p id="subText" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Please do not refresh or close this page.</p>
             
-            <button id="retryBtn" class="retry-btn">Retry Payment</button>
+            <button id="backBtn" class="back-btn">Back to Checkout</button>
         </div>
     </main>
 
@@ -107,7 +107,7 @@
         const checkoutData = JSON.parse(localStorage.getItem("vortex_checkout_data"));
         const statusText = document.getElementById("statusText");
         const subText = document.getElementById("subText");
-        const retryBtn = document.getElementById("retryBtn");
+        const backBtn = document.getElementById("backBtn");
         const spinner = document.getElementById("spinner");
 
         // Kick user back if they directly navigated here without checking out
@@ -121,7 +121,7 @@
         async function startPayment() {
             try {
                 // Reset UI in case it's a retry
-                retryBtn.style.display = "none";
+                backBtn.style.display = "none";
                 statusText.textContent = "Connecting to Bank...";
                 subText.textContent = "Fetching secure order token.";
                 spinner.style.borderTopColor = "var(--primary-cyan)";
@@ -164,9 +164,9 @@
                     modal: {
                         ondismiss: function() {
                             statusText.textContent = "Payment Cancelled";
-                            subText.textContent = "You closed the payment window.";
+                            subText.textContent = "You closed the payment window. You can go back to review your details and try again.";
                             spinner.style.animationPlayState = "paused";
-                            retryBtn.style.display = "block";
+                            backBtn.style.display = "block";
                         }
                     },
                     handler: async function (response) {
@@ -225,7 +225,7 @@
                     subText.textContent = response.error.description || "Transaction declined by bank.";
                     spinner.style.animationPlayState = "paused";
                     spinner.style.borderTopColor = "#ff4757";
-                    retryBtn.style.display = "block";
+                    backBtn.style.display = "block";
                 });
 
                 statusText.textContent = "Awaiting Payment...";
@@ -239,12 +239,15 @@
                 subText.textContent = error.message || "Failed to connect to the payment server.";
                 spinner.style.animationPlayState = "paused";
                 spinner.style.borderTopColor = "#ff4757";
-                retryBtn.style.display = "block";
+                backBtn.style.display = "block";
             }
         }
 
-        // Attach retry listener
-        retryBtn.addEventListener("click", startPayment);
+        // Attach listener to take user back to checkout.html
+        // (Make sure to change "./checkout.html" if your file is named something else)
+        backBtn.addEventListener("click", () => {
+            window.location.href = "./checkout.html";
+        });
 
         // Auto-start payment process 1 second after page loads
         window.addEventListener("DOMContentLoaded", () => {

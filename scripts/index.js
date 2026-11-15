@@ -130,7 +130,7 @@ const spawnFlyingParticle = (startX, startY, endX, endY, isRemoving = false) => 
 };
 
 // =========================================
-// 4. EVENT RENDERING
+// 4. EVENT RENDERING (WITH STRIKETHROUGH PRICE)
 // =========================================
 const renderCategory = (categoryId, containerId) => {
   const items = eventsData.filter((event) => event.cat === categoryId || event.category === categoryId);
@@ -155,7 +155,27 @@ const renderCategory = (categoryId, containerId) => {
 
     const price = document.createElement("div");
     price.className = "event-price";
-    price.textContent = `₹${parsePrice(item.price)}`;
+
+    const currentPriceVal = parsePrice(item.price);
+    const originalPriceVal = item.originalPrice ? parsePrice(item.originalPrice) : 0;
+
+    if (originalPriceVal > currentPriceVal) {
+      const oldPriceEl = document.createElement("del");
+      oldPriceEl.className = "old-price";
+      oldPriceEl.textContent = `₹${originalPriceVal}`;
+
+      const newPriceEl = document.createElement("span");
+      newPriceEl.textContent = `₹${currentPriceVal}`;
+
+      const badgeEl = document.createElement("span");
+      badgeEl.className = "discount-badge";
+      const pctOff = Math.round(((originalPriceVal - currentPriceVal) / originalPriceVal) * 100);
+      badgeEl.textContent = `${pctOff}% OFF`;
+
+      price.append(oldPriceEl, newPriceEl, badgeEl);
+    } else {
+      price.textContent = `₹${currentPriceVal}`;
+    }
 
     info.append(title, description, price);
 
@@ -168,11 +188,10 @@ const renderCategory = (categoryId, containerId) => {
     // CART BUTTON CREATION
     const cartButton = document.createElement("button");
     cartButton.className = "action-btn btn-cart";
-    cartButton.setAttribute("data-event-id", item.id); // Added ID tracking for sync
+    cartButton.setAttribute("data-event-id", item.id);
     cartButton.style.marginLeft = "10px";
     cartButton.style.borderColor = "var(--primary-purple)";
 
-    // Set initial state based on whether the item is already in the cart on page load
     const isAdded = cart.some((cItem) => cItem.id === item.id);
     if (isAdded) {
       cartButton.textContent = "Added";
@@ -187,7 +206,6 @@ const renderCategory = (categoryId, containerId) => {
       cartButton.style.cursor = "pointer";
     }
 
-    // Hover effects (Disabled if already added)
     cartButton.addEventListener("mouseenter", () => {
       if (cartButton.classList.contains("added-to-cart")) return;
       cartButton.style.background = "var(--primary-purple)";
@@ -203,7 +221,7 @@ const renderCategory = (categoryId, containerId) => {
 
     cartButton.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (cartButton.classList.contains("added-to-cart")) return; // Prevent double-adding
+      if (cartButton.classList.contains("added-to-cart")) return;
       window.handleAddToCart(item.id, item.name, item.category || item.cat, e.currentTarget);
     });
 
@@ -231,14 +249,17 @@ try {
 
 cart = cart.map((item) => {
   const eventRecord = eventsData.find((e) => e.id === item.id);
-  return { ...item, price: eventRecord ? parsePrice(eventRecord.price) : parsePrice(item.price) };
+  return {
+    ...item,
+    price: eventRecord ? parsePrice(eventRecord.price) : parsePrice(item.price),
+    originalPrice: eventRecord && eventRecord.originalPrice ? parsePrice(eventRecord.originalPrice) : 0
+  };
 });
 
 let previousDiscountPercent = 0;
 const saveCart = () => { try { localStorage.setItem("vortex_cart", JSON.stringify(cart)); } catch(e) {} };
 const formatINR = (amount) => `₹${Number(amount || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
 
-// Initialize the grid AFTER cart state is loaded so the buttons know if they are already "Added"
 try {
   renderCategory("general", "grid-general");
   renderCategory("prodigy", "grid-prodigy");
@@ -250,9 +271,11 @@ try {
 // =========================================
 // 6. DISCOUNT CALCULATION
 // =========================================
+const SR_IDP_IDS = ["sridp", "sridpmultistatements"];
+
 const getCartBilling = () => {
-  const eligibleItems = cart.filter((item) => item.id !== "sridp");
-  const ineligibleItems = cart.filter((item) => item.id === "sridp");
+  const eligibleItems = cart.filter((item) => !SR_IDP_IDS.includes(item.id));
+  const ineligibleItems = cart.filter((item) => SR_IDP_IDS.includes(item.id));
 
   const counts = { general: 0, prodigy: 0, pharma: 0 };
   eligibleItems.forEach((item) => { if (Object.hasOwn(counts, item.category)) counts[item.category]++; });
@@ -266,16 +289,16 @@ const getCartBilling = () => {
   let message = "Add more events to unlock series discounts!";
 
   if (completedSeries === 3) {
-    discountPercent = 0.7;
+    discountPercent = 0.70;
     message = "All 3 series complete — 70% discount applied!";
   } else if (completedSeries === 2) {
-    discountPercent = 0.62;
-    message = "2 series complete — 62% discount applied!";
+    discountPercent = 0.65;
+    message = "2 series complete — 65% discount applied!";
   } else if (completedSeries === 1) {
-    discountPercent = 0.6;
+    discountPercent = 0.60;
     message = "1 full series complete — 60% discount applied!";
   } else if (eligibleItems.length >= 5) {
-    discountPercent = 0.5;
+    discountPercent = 0.50;
     message = "5+ eligible events — 50% discount applied!";
   } else if (eligibleItems.length > 0) {
     message = `Add ${Math.max(0, 5 - eligibleItems.length)} more eligible event(s) for 50% off.`;
@@ -302,7 +325,7 @@ const calculateCartTotals = () => {
   const message = document.getElementById("discountMsg");
 
   if (cartSubtotal) cartSubtotal.textContent = formatINR(billing.subtotal);
-  if (discountLabel) discountLabel.textContent = `Discount (${billing.discountPercent * 100}%)`;
+  if (discountLabel) discountLabel.textContent = `Discount (${Math.round(billing.discountPercent * 100)}%)`;
   if (cartDiscount) cartDiscount.textContent = `-${formatINR(billing.discount)}`;
   if (cartTotal) cartTotal.textContent = formatINR(billing.total);
   if (message) message.textContent = billing.message;
@@ -389,7 +412,6 @@ const updateCartUI = () => {
 
   calculateCartTotals();
 
-  // SYNC ALL GRID BUTTONS WITH CART STATE
   const allCartButtons = document.querySelectorAll(".btn-cart[data-event-id]");
   allCartButtons.forEach(btn => {
     const eventId = btn.getAttribute("data-event-id");
@@ -401,7 +423,7 @@ const updateCartUI = () => {
       btn.style.background = "var(--primary-purple)";
       btn.style.color = "#fff";
       btn.style.cursor = "default";
-      btn.style.boxShadow = "none"; // Clears hover glow if clicked
+      btn.style.boxShadow = "none";
     } else {
       btn.textContent = "Add to Cart";
       btn.classList.remove("added-to-cart");
@@ -416,8 +438,9 @@ window.handleAddToCart = (id, name, category, btnElement) => {
   if (cart.some((item) => item.id === id)) return;
   const eventRecord = eventsData.find((e) => e.id === id);
   const itemPrice = eventRecord ? parsePrice(eventRecord.price) : 0;
+  const itemOriginalPrice = eventRecord && eventRecord.originalPrice ? parsePrice(eventRecord.originalPrice) : 0;
   
-  cart.push({ id, name, category, price: itemPrice });
+  cart.push({ id, name, category, price: itemPrice, originalPrice: itemOriginalPrice });
   saveCart();
   updateCartUI();
 

@@ -35,7 +35,11 @@ try { cart = JSON.parse(localStorage.getItem("vortex_cart") || "[]"); } catch { 
 
 cart = cart.map((item) => {
     const eventRecord = eventsData.find((e) => e.id === item.id);
-    return { ...item, price: eventRecord ? parsePrice(eventRecord.price) : 0 };
+    return {
+        ...item,
+        price: eventRecord ? parsePrice(eventRecord.price) : 0,
+        originalPrice: eventRecord && eventRecord.originalPrice ? parsePrice(eventRecord.originalPrice) : 0
+    };
 });
 
 if (cart.length === 0) {
@@ -46,9 +50,11 @@ if (cart.length === 0) {
 // =========================================
 // 3. DISCOUNT MATH 
 // =========================================
+const SR_IDP_IDS = ["sridp", "sridpmultistatements"];
+
 const getCartBilling = () => {
-    const eligibleItems = cart.filter((item) => item.id !== "sridp");
-    const ineligibleItems = cart.filter((item) => item.id === "sridp");
+    const eligibleItems = cart.filter((item) => !SR_IDP_IDS.includes(item.id));
+    const ineligibleItems = cart.filter((item) => SR_IDP_IDS.includes(item.id));
   
     const counts = { general: 0, prodigy: 0, pharma: 0 };
     eligibleItems.forEach((item) => { if (Object.hasOwn(counts, item.category)) counts[item.category]++; });
@@ -59,10 +65,10 @@ const getCartBilling = () => {
     if (counts.pharma === 5) completedSeries++;
   
     let discountPercent = 0;
-    if (completedSeries === 3) discountPercent = 0.7;
-    else if (completedSeries === 2) discountPercent = 0.62;
-    else if (completedSeries === 1) discountPercent = 0.6;
-    else if (eligibleItems.length >= 5) discountPercent = 0.5;
+    if (completedSeries === 3) discountPercent = 0.70;
+    else if (completedSeries === 2) discountPercent = 0.65;
+    else if (completedSeries === 1) discountPercent = 0.60;
+    else if (eligibleItems.length >= 5) discountPercent = 0.50;
   
     const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
     const eligibleSubtotal = eligibleItems.reduce((sum, item) => sum + item.price, 0);
@@ -78,7 +84,7 @@ const getCartBilling = () => {
 // =========================================
 const renderOrder = () => {
     const list = document.getElementById("checkoutEventList");
-    list.replaceChildren(); // Clears the list before re-rendering
+    list.replaceChildren();
     
     cart.forEach((item) => {
         const row = document.createElement("div");
@@ -94,7 +100,6 @@ const renderOrder = () => {
         category.textContent = `${item.category} Series`;
         details.append(name, category);
 
-        // Container for price and remove button
         const rightSide = document.createElement("div");
         rightSide.style.display = "flex";
         rightSide.style.alignItems = "center";
@@ -102,10 +107,13 @@ const renderOrder = () => {
         rightSide.style.flexShrink = "0";
 
         const price = document.createElement("strong");
-        price.textContent = formatINR(item.price);
         price.style.fontFamily = "'Orbitron', sans-serif";
+        if (item.originalPrice && item.originalPrice > item.price) {
+            price.innerHTML = `<del class="old-price" style="margin-right:6px;">${formatINR(item.originalPrice)}</del>${formatINR(item.price)}`;
+        } else {
+            price.textContent = formatINR(item.price);
+        }
 
-        // Create Remove Button
         const removeBtn = document.createElement("button");
         removeBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         removeBtn.style.background = "none";
@@ -117,7 +125,6 @@ const renderOrder = () => {
         removeBtn.style.transition = "transform 0.2s, color 0.2s";
         removeBtn.setAttribute("aria-label", `Remove ${item.name}`);
 
-        // Hover effects
         removeBtn.addEventListener("mouseenter", () => {
             removeBtn.style.transform = "scale(1.15)";
             removeBtn.style.color = "#ff6b81";
@@ -127,7 +134,6 @@ const renderOrder = () => {
             removeBtn.style.color = "#ff4757";
         });
 
-        // Click handler to remove item
         removeBtn.addEventListener("click", () => {
             cart = cart.filter((cItem) => cItem.id !== item.id);
             localStorage.setItem("vortex_cart", JSON.stringify(cart));
@@ -136,7 +142,7 @@ const renderOrder = () => {
                 alert("Your cart is empty! Redirecting to events...");
                 window.location.href = "index.html#events";
             } else {
-                renderOrder(); // Redraws the list instantly
+                renderOrder();
             }
         });
 
@@ -147,8 +153,7 @@ const renderOrder = () => {
 
     const billing = getCartBilling();
     document.getElementById("checkoutSubtotal").textContent = formatINR(billing.subtotal);
-    // FIXED: The missing multiplication asterisk is back!
-    document.getElementById("checkoutDiscountLabel").textContent = `Discount (${billing.discountPercent * 100}%)`;
+    document.getElementById("checkoutDiscountLabel").textContent = `Discount (${Math.round(billing.discountPercent * 100)}%)`;
     document.getElementById("checkoutDiscount").textContent = `-${formatINR(billing.discount)}`;
     document.getElementById("checkoutTotal").textContent = formatINR(billing.total);
 };
@@ -197,14 +202,12 @@ if (checkoutForm) {
             billing: getCartBilling()
         };
 
-        // 1. Lock the button and show loading state
         const proceedBtn = document.getElementById("proceedBtn");
         const originalText = proceedBtn.textContent;
         proceedBtn.textContent = "Processing...";
         proceedBtn.disabled = true;
 
         try {
-            // 2. Send data to your live Vercel backend
             const response = await fetch("https://vortex-backend-ten.vercel.app/api/register", {
                 method: "POST",
                 headers: {
@@ -216,10 +219,7 @@ if (checkoutForm) {
             const result = await response.json();
 
             if (result.success) {
-                // 3. Save to local storage for the payment page
                 localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
-                
-                // 4. Redirect to payment gateway
                 window.location.href = "payment.html";
             } else {
                 alert("Something went wrong on the server. Please try again.");
