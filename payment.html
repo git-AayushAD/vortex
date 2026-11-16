@@ -95,34 +95,106 @@
     <main class="payment-container">
         <div class="payment-box">
             <div class="spinner" id="spinner"></div>
+            <div class="vortex-modal-icon" id="statusIcon" style="display: none;"></div>
             <h2 class="font-heading" id="statusText" style="font-size: 1.2rem; color: var(--text-main);">Initializing Secure Gateway...</h2>
             <p id="subText" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Please do not refresh or close this page.</p>
+            <div id="receiptStub" style="display: none;"></div>
             
             <button id="backBtn" class="back-btn">Back to Checkout</button>
         </div>
     </main>
 
     <script>
+        // Sync saved theme
+        const savedTheme = localStorage.getItem("vortex_theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+        // In-page modal helper
+        function showVortexModal({ type = "warning", title, message, btnText = "Continue", onConfirm }) {
+            let overlay = document.getElementById("vortexModalOverlay");
+            if (!overlay) {
+                overlay = document.createElement("div");
+                overlay.id = "vortexModalOverlay";
+                overlay.className = "vortex-modal-overlay";
+                document.body.appendChild(overlay);
+            }
+
+            const icons = {
+                success: "fa-solid fa-circle-check",
+                error: "fa-solid fa-circle-xmark",
+                warning: "fa-solid fa-triangle-exclamation"
+            };
+
+            overlay.innerHTML = `
+                <div class="vortex-modal-card">
+                    <div class="vortex-modal-icon ${type}">
+                        <i class="${icons[type] || icons.warning}"></i>
+                    </div>
+                    <h3 class="vortex-modal-title">${title}</h3>
+                    <p class="vortex-modal-msg">${message}</p>
+                    <button type="button" class="vortex-modal-btn" id="vortexModalBtn">${btnText}</button>
+                </div>
+            `;
+
+            requestAnimationFrame(() => overlay.classList.add("active"));
+
+            document.getElementById("vortexModalBtn").onclick = () => {
+                overlay.classList.remove("active");
+                if (onConfirm) setTimeout(onConfirm, 250);
+            };
+        }
+
+        // Helper to stop and hide the rotating spinner and show a clean status icon instead
+        function showStatusIcon(type) {
+            spinner.style.animationPlayState = "paused";
+            spinner.style.display = "none";
+            const statusIcon = document.getElementById("statusIcon");
+            const icons = {
+                success: "fa-solid fa-circle-check",
+                error: "fa-solid fa-circle-xmark",
+                warning: "fa-solid fa-triangle-exclamation"
+            };
+            statusIcon.className = `vortex-modal-icon ${type}`;
+            statusIcon.innerHTML = `<i class="${icons[type] || icons.warning}"></i>`;
+            statusIcon.style.display = "flex";
+        }
+
         // 1. Retrieve data saved from checkout.js
         const checkoutData = JSON.parse(localStorage.getItem("vortex_checkout_data"));
         const statusText = document.getElementById("statusText");
         const subText = document.getElementById("subText");
         const backBtn = document.getElementById("backBtn");
         const spinner = document.getElementById("spinner");
+        const receiptStub = document.getElementById("receiptStub");
+
+        let isPaymentComplete = false;
 
         // Kick user back if they directly navigated here without checking out
         if (!checkoutData) {
-            alert("No pending payment found. Redirecting to home.");
-            window.location.href = "./index.html";
+            spinner.style.display = "none";
+            statusText.textContent = "No Active Session";
+            subText.textContent = "No pending payment found.";
+            showVortexModal({
+                type: "warning",
+                title: "No Pending Payment",
+                message: "No active checkout session was found. Redirecting you to the home page.",
+                btnText: "Go to Home",
+                onConfirm: () => { window.location.href = "./index.html"; }
+            });
         }
 
         const RAZORPAY_KEY_ID = "rzp_test_TzXYIuY47SGvh0";
 
         async function startPayment() {
+            if (!checkoutData) return;
             try {
                 // Reset UI in case it's a retry
                 backBtn.style.display = "none";
+                document.getElementById("statusIcon").style.display = "none";
+                receiptStub.style.display = "none";
+                spinner.style.display = "block";
                 statusText.textContent = "Connecting to Bank...";
+                statusText.style.color = "var(--text-main)";
                 subText.textContent = "Fetching secure order token.";
                 spinner.style.borderTopColor = "var(--primary-cyan)";
                 spinner.style.animationPlayState = "running";
@@ -163,9 +235,9 @@
                     },
                     modal: {
                         ondismiss: function() {
+                            showStatusIcon("warning");
                             statusText.textContent = "Payment Cancelled";
                             subText.textContent = "You closed the payment window. You can go back to review your details and try again.";
-                            spinner.style.animationPlayState = "paused";
                             backBtn.style.display = "block";
                         }
                     },
@@ -198,20 +270,28 @@
                             console.error("Failed to update status in DB:", err);
                         }
 
-                        // Update UI
-                        statusText.textContent = "Payment Successful!";
+                        // Stop & hide the rotating spinner, display on-page VIP receipt pass
+                        isPaymentComplete = true;
+                        showStatusIcon("success");
+                        statusText.textContent = "Registration Confirmed!";
                         statusText.style.color = "var(--success-green)";
-                        subText.textContent = `Payment ID: ${response.razorpay_payment_id}`;
-                        spinner.style.animationPlayState = "paused";
-                        
+                        subText.textContent = "Your Vortex 14.0 pass is locked in. Screenshot this receipt for entry.";
+
+                        receiptStub.className = "vortex-ticket-stub";
+                        receiptStub.innerHTML = `
+                            <div class="vortex-ticket-row"><span>Participant</span><strong>${checkoutData.name}</strong></div>
+                            <div class="vortex-ticket-row"><span>Events</span><strong>${checkoutData.cart ? checkoutData.cart.length : 0} Registered</strong></div>
+                            <div class="vortex-ticket-row"><span>Amount Paid</span><strong style="color:var(--success-green)">₹${checkoutData.billing.total}</strong></div>
+                            <div class="vortex-ticket-row"><span>Payment ID</span><strong>${response.razorpay_payment_id}</strong></div>
+                        `;
+                        receiptStub.style.display = "block";
+
                         checkoutData.paymentId = response.razorpay_payment_id;
                         localStorage.setItem("vortex_checkout_data", JSON.stringify(checkoutData));
                         localStorage.removeItem("vortex_cart");
-                        
-                        setTimeout(() => {
-                            alert("Registration Complete! We will now redirect you to the home page.");
-                            window.location.href = "./index.html";
-                        }, 2000);
+
+                        backBtn.textContent = "Return to Home";
+                        backBtn.style.display = "block";
                     }
                 };
 
@@ -220,11 +300,10 @@
                 
                 rzp.on('payment.failed', function (response){
                     console.error("Payment Failed", response.error);
+                    showStatusIcon("error");
                     statusText.textContent = "Payment Failed";
                     statusText.style.color = "#ff4757";
                     subText.textContent = response.error.description || "Transaction declined by bank.";
-                    spinner.style.animationPlayState = "paused";
-                    spinner.style.borderTopColor = "#ff4757";
                     backBtn.style.display = "block";
                 });
 
@@ -234,24 +313,28 @@
 
             } catch (error) {
                 console.error("Gateway Error:", error);
+                showStatusIcon("error");
                 statusText.textContent = "Gateway Error";
                 statusText.style.color = "#ff4757";
                 subText.textContent = error.message || "Failed to connect to the payment server.";
-                spinner.style.animationPlayState = "paused";
-                spinner.style.borderTopColor = "#ff4757";
                 backBtn.style.display = "block";
             }
         }
 
-        // Attach listener to take user back to checkout.html
-        // (Make sure to change "./checkout.html" if your file is named something else)
+        // Attach listener: goes to index.html if payment succeeded, or back to checkout.html if cancelled/failed
         backBtn.addEventListener("click", () => {
-            window.location.href = "./checkout.html";
+            if (isPaymentComplete) {
+                window.location.href = "./index.html";
+            } else {
+                window.location.href = "./checkout.html";
+            }
         });
 
         // Auto-start payment process 1 second after page loads
         window.addEventListener("DOMContentLoaded", () => {
-            setTimeout(startPayment, 1000);
+            if (checkoutData) {
+                setTimeout(startPayment, 1000);
+            }
         });
     </script>
 </body>

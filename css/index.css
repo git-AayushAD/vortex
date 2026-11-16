@@ -332,3 +332,152 @@ footer { background: var(--footer-bg); border-top: 1px solid var(--glass-border)
     0% { transform: translateX(100vw); }
     100% { transform: translateX(-100%); }
 }
+
+/* ===== IN-PAGE GLASSMORPHIC MODAL & RECEIPT PASS ===== */
+/* Keep custom glowing cursor above the modal backdrop */
+#glowing-cursor {
+    z-index: 999999 !important;
+    pointer-events: none !important;
+}
+
+.vortex-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 7, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 1.5rem;
+    cursor: auto;
+}
+
+.vortex-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.vortex-modal-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.2rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 243, 255, 0.15);
+    transform: translateY(25px) scale(0.95);
+    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.vortex-modal-overlay.active .vortex-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.vortex-modal-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+}
+
+.vortex-modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    font-size: 1.8rem;
+}
+
+.vortex-modal-icon.success {
+    background: rgba(0, 255, 136, 0.12);
+    color: var(--success-green);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.25);
+}
+
+.vortex-modal-icon.error {
+    background: rgba(255, 71, 87, 0.12);
+    color: #ff4757;
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.25);
+}
+
+.vortex-modal-icon.warning {
+    background: rgba(0, 243, 255, 0.12);
+    color: var(--primary-cyan);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.25);
+}
+
+.vortex-modal-title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 0.6rem;
+}
+
+.vortex-modal-msg {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.vortex-ticket-stub {
+    background: var(--btn-wrapper-bg);
+    border: 1px dashed var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1.2rem 0;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.vortex-ticket-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    gap: 10px;
+}
+
+.vortex-ticket-row:last-child {
+    margin-bottom: 0;
+}
+
+.vortex-ticket-row strong {
+    color: var(--text-main);
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.8rem;
+    text-align: right;
+    word-break: break-all;
+}
+
+.vortex-modal-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+    color: #fff;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer !important;
+    transition: opacity 0.25s, box-shadow 0.25s;
+}
+
+.vortex-modal-btn:hover {
+    opacity: 0.92;
+    box-shadow: 0 0 18px rgba(0, 243, 255, 0.4);
+}

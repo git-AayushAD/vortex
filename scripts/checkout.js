@@ -1,6 +1,43 @@
 import eventsData from "../data/eventsData.js";
 
 // =========================================
+// 0. IN-PAGE GLASSMORPHIC MODAL HELPER
+// =========================================
+function showVortexModal({ type = "warning", title, message, btnText = "Continue", onConfirm }) {
+    let overlay = document.getElementById("vortexModalOverlay");
+    if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.id = "vortexModalOverlay";
+        overlay.className = "vortex-modal-overlay";
+        document.body.appendChild(overlay);
+    }
+
+    const icons = {
+        success: "fa-solid fa-circle-check",
+        error: "fa-solid fa-circle-xmark",
+        warning: "fa-solid fa-triangle-exclamation"
+    };
+
+    overlay.innerHTML = `
+        <div class="vortex-modal-card">
+            <div class="vortex-modal-icon ${type}">
+                <i class="${icons[type] || icons.warning}"></i>
+            </div>
+            <h3 class="vortex-modal-title">${title}</h3>
+            <p class="vortex-modal-msg">${message}</p>
+            <button type="button" class="vortex-modal-btn" id="vortexModalBtn">${btnText}</button>
+        </div>
+    `;
+
+    requestAnimationFrame(() => overlay.classList.add("active"));
+
+    document.getElementById("vortexModalBtn").onclick = () => {
+        overlay.classList.remove("active");
+        if (onConfirm) setTimeout(onConfirm, 250);
+    };
+}
+
+// =========================================
 // 1. THEME INITIALIZATION
 // =========================================
 const themeBtn = document.getElementById("themeToggleBtn");
@@ -42,11 +79,6 @@ cart = cart.map((item) => {
     };
 });
 
-if (cart.length === 0) {
-    alert("Your cart is empty! Redirecting to events...");
-    window.location.href = "index.html#events";
-}
-
 // =========================================
 // 3. DISCOUNT MATH 
 // =========================================
@@ -84,6 +116,7 @@ const getCartBilling = () => {
 // =========================================
 const renderOrder = () => {
     const list = document.getElementById("checkoutEventList");
+    if (!list) return;
     list.replaceChildren();
     
     cart.forEach((item) => {
@@ -139,8 +172,14 @@ const renderOrder = () => {
             localStorage.setItem("vortex_cart", JSON.stringify(cart));
 
             if (cart.length === 0) {
-                alert("Your cart is empty! Redirecting to events...");
-                window.location.href = "index.html#events";
+                renderOrder();
+                showVortexModal({
+                    type: "warning",
+                    title: "Your Cart is Empty",
+                    message: "You removed the last event from your cart. Returning to events.",
+                    btnText: "Browse Events",
+                    onConfirm: () => { window.location.href = "index.html#events"; }
+                });
             } else {
                 renderOrder();
             }
@@ -158,8 +197,18 @@ const renderOrder = () => {
     document.getElementById("checkoutTotal").textContent = formatINR(billing.total);
 };
 
-// Initial Render
-renderOrder();
+// Initial Check & Render
+if (cart.length === 0) {
+    showVortexModal({
+        type: "warning",
+        title: "Your Cart is Empty",
+        message: "Add at least one event to your cart before proceeding to checkout.",
+        btnText: "Browse Events",
+        onConfirm: () => { window.location.href = "index.html#events"; }
+    });
+} else {
+    renderOrder();
+}
 
 // =========================================
 // 5. FORM LOGIC & SUBMISSION TO VERCEL
@@ -222,14 +271,24 @@ if (checkoutForm) {
                 localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
                 window.location.href = "payment.html";
             } else {
-                alert("Something went wrong on the server. Please try again.");
+                showVortexModal({
+                    type: "error",
+                    title: "Registration Error",
+                    message: "Something went wrong on the server. Please try again.",
+                    btnText: "Try Again"
+                });
                 proceedBtn.textContent = originalText;
                 proceedBtn.disabled = false;
             }
 
         } catch (error) {
             console.error("Network Error:", error);
-            alert("Failed to connect to the server. Check your internet.");
+            showVortexModal({
+                type: "error",
+                title: "Connection Failed",
+                message: "Failed to connect to the server. Please check your internet connection and try again.",
+                btnText: "Okay"
+            });
             proceedBtn.textContent = originalText;
             proceedBtn.disabled = false;
         }
