@@ -248,9 +248,10 @@ if (checkoutForm) {
             year: document.getElementById("yearSelect").value,
             collegeId: document.getElementById("collegeId").value.trim(),
             cart: cart,
+            registeredEvents: cart.map(item => item.name), // <--- ADD THIS LINE
             billing: getCartBilling()
         };
-
+        
         const proceedBtn = document.getElementById("proceedBtn");
         const originalText = proceedBtn.textContent;
         proceedBtn.textContent = "Processing...";
