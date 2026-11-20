@@ -1,9 +1,14 @@
 import eventsData from "../data/eventsData.js";
 
 // =========================================
+// PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+// =========================================
+const GOOGLE_SCRIPT_UPLOAD_URL = "https://script.google.com/macros/s/AKfycbzoEYD2AxVk9N17q1Z7jxfWtsR2617eimFZjcYl5r4LuVIybfcQqpE50554FnEhjvBR/exec";
+
+// =========================================
 // 0. IN-PAGE GLASSMORPHIC MODAL HELPER
 // =========================================
-function showVortexModal({ type = "warning", title, message, btnText = "Continue", onConfirm }) {
+function showVortexModal({ type = "warning", title, message, ticketHTML = "", btnText = "Continue", onConfirm }) {
     let overlay = document.getElementById("vortexModalOverlay");
     if (!overlay) {
         overlay = document.createElement("div");
@@ -25,6 +30,7 @@ function showVortexModal({ type = "warning", title, message, btnText = "Continue
             </div>
             <h3 class="vortex-modal-title">${title}</h3>
             <p class="vortex-modal-msg">${message}</p>
+            ${ticketHTML}
             <button type="button" class="vortex-modal-btn" id="vortexModalBtn">${btnText}</button>
         </div>
     `;
@@ -211,7 +217,40 @@ if (cart.length === 0) {
 }
 
 // =========================================
-// 5. FORM LOGIC & SUBMISSION TO VERCEL
+// 5. FILE INPUT PREVIEW & BASE64 HELPER
+// =========================================
+const paymentProofInput = document.getElementById("paymentProof");
+const fileUploadName = document.getElementById("fileUploadName");
+
+paymentProofInput?.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+        fileUploadName.textContent = "";
+        return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+        showVortexModal({
+            type: "warning",
+            title: "File Too Large",
+            message: "Please upload an image or PDF smaller than 5 MB.",
+            btnText: "Okay"
+        });
+        paymentProofInput.value = "";
+        fileUploadName.textContent = "";
+        return;
+    }
+    fileUploadName.textContent = `Selected: ${file.name}`;
+});
+
+const fileToBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = (err) => reject(err);
+    reader.readAsDataURL(file);
+});
+
+// =========================================
+// 6. FORM LOGIC, DRIVE UPLOAD & DB SAVE
 // =========================================
 const collegeSelect = document.getElementById("collegeSelect");
 const otherCollegeGroup = document.getElementById("otherCollegeGroup");
@@ -235,47 +274,107 @@ if (checkoutForm) {
     checkoutForm.addEventListener("submit", async (e) => {
         e.preventDefault(); 
         
+        const file = paymentProofInput?.files[0];
+        if (!file) {
+            showVortexModal({
+                type: "warning",
+                title: "Payment Proof Required",
+                message: "Please upload your payment screenshot or PDF receipt.",
+                btnText: "Okay"
+            });
+            return;
+        }
+
         let finalCollege = collegeSelect.value;
         if (finalCollege === "Other") {
             finalCollege = otherCollegeInput.value.trim();
         }
 
-        const participantData = {
-            name: document.getElementById("fullName").value.trim(),
-            phone: document.getElementById("phone").value.trim(),
-            email: document.getElementById("email").value.trim(),
-            college: finalCollege,
-            year: document.getElementById("yearSelect").value,
-            collegeId: document.getElementById("collegeId").value.trim(),
-            cart: cart,
-            registeredEvents: cart.map(item => item.name), // <--- ADD THIS LINE
-            billing: getCartBilling()
-        };
-        
+        const rawName = document.getElementById("fullName").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const transactionId = document.getElementById("transactionId").value.trim();
+        const billing = getCartBilling();
+
+        // Build clean, unique filename: FullName_Phone_UTR.ext
+        const safeName = rawName.replace(/[^a-zA-Z0-9]/g, "_");
+        const safeUTR = transactionId.replace(/[^a-zA-Z0-9]/g, "");
+        const ext = file.name.split(".").pop().toLowerCase();
+        const customFileName = `${safeName}_${phone}_${safeUTR}.${ext}`;
+
         const proceedBtn = document.getElementById("proceedBtn");
         const originalText = proceedBtn.textContent;
-        proceedBtn.textContent = "Processing...";
+        proceedBtn.textContent = "Uploading Payment Proof...";
         proceedBtn.disabled = true;
 
         try {
+            // 1. Convert file to Base64 & Upload to Google Drive folder
+            const base64Data = await fileToBase64(file);
+
+            const driveRes = await fetch(GOOGLE_SCRIPT_UPLOAD_URL, {
+                method: "POST",
+                body: JSON.stringify({
+                    fileName: customFileName,
+                    mimeType: file.type,
+                    base64: base64Data
+                })
+            });
+
+            const driveData = await driveRes.json();
+            if (!driveData.success) {
+                throw new Error(driveData.message || "Failed to upload payment proof to Drive");
+            }
+
+            proceedBtn.textContent = "Saving Registration...";
+
+            // 2. Send registration + Drive proof link + filename to Vercel MongoDB
+            const participantData = {
+                name: rawName,
+                phone: phone,
+                email: email,
+                college: finalCollege,
+                year: document.getElementById("yearSelect").value,
+                collegeId: document.getElementById("collegeId").value.trim(),
+                transactionId: transactionId,
+                paymentProofName: customFileName,
+                paymentProofUrl: driveData.fileUrl,
+                paymentStatus: "Pending Verification",
+                cart: cart,
+                registeredEvents: cart.map((item) => item.name),
+                billing: billing
+            };
+
             const response = await fetch("https://vortex-backend-ten.vercel.app/api/register", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(participantData)
             });
 
             const result = await response.json();
 
             if (result.success) {
-                localStorage.setItem("vortex_checkout_data", JSON.stringify(participantData));
-                window.location.href = "payment.html";
+                localStorage.removeItem("vortex_cart");
+                showVortexModal({
+                    type: "success",
+                    title: "Registration Submitted!",
+                    message: "Your payment proof has been uploaded. Our team will verify your payment shortly.",
+                    ticketHTML: `
+                        <div class="vortex-ticket-stub">
+                            <div class="vortex-ticket-row"><span>Participant</span><strong>${rawName}</strong></div>
+                            <div class="vortex-ticket-row"><span>Events</span><strong>${cart.length} Registered</strong></div>
+                            <div class="vortex-ticket-row"><span>Amount Paid</span><strong style="color:var(--success-green)">${formatINR(billing.total)}</strong></div>
+                            <div class="vortex-ticket-row"><span>UTR / Txn ID</span><strong>${transactionId}</strong></div>
+                            <div class="vortex-ticket-row"><span>Saved File</span><strong>${customFileName}</strong></div>
+                        </div>
+                    `,
+                    btnText: "Return to Home",
+                    onConfirm: () => { window.location.href = "index.html"; }
+                });
             } else {
                 showVortexModal({
                     type: "error",
                     title: "Registration Error",
-                    message: "Something went wrong on the server. Please try again.",
+                    message: "Something went wrong saving your registration. Please try again.",
                     btnText: "Try Again"
                 });
                 proceedBtn.textContent = originalText;
@@ -283,11 +382,11 @@ if (checkoutForm) {
             }
 
         } catch (error) {
-            console.error("Network Error:", error);
+            console.error("Submission Error:", error);
             showVortexModal({
                 type: "error",
-                title: "Connection Failed",
-                message: "Failed to connect to the server. Please check your internet connection and try again.",
+                title: "Upload Failed",
+                message: "Failed to upload payment proof or connect to server. Please check your internet and try again.",
                 btnText: "Okay"
             });
             proceedBtn.textContent = originalText;

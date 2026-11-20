@@ -23,6 +23,55 @@
       .icon-btn::after, .submit-btn::after {
         content: ""; position: absolute; top: -12px; right: -12px; bottom: -12px; left: -12px;
       }
+
+      /* Payment QR & File Upload Styling */
+      .payment-qr-box {
+        background: var(--btn-wrapper-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 1.2rem;
+        margin: 1.5rem 0;
+        text-align: center;
+      }
+      .payment-qr-box img {
+        max-width: 180px;
+        width: 100%;
+        border-radius: 10px;
+        border: 2px solid var(--primary-cyan);
+        padding: 6px;
+        background: #fff;
+        margin: 0.8rem auto;
+        display: block;
+      }
+      .file-upload-wrapper {
+        position: relative;
+        border: 1.5px dashed var(--primary-cyan);
+        border-radius: 12px;
+        padding: 1.4rem 1rem;
+        text-align: center;
+        background: rgba(0, 243, 255, 0.04);
+        cursor: pointer;
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .file-upload-wrapper:hover {
+        border-color: var(--primary-purple);
+        background: rgba(189, 0, 255, 0.08);
+      }
+      .file-upload-wrapper input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .file-upload-name {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--success-green);
+        font-weight: 500;
+        word-break: break-all;
+      }
     </style>
 
     <script src="./scripts/fx.js" defer></script>
@@ -69,7 +118,6 @@
 
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <!-- Strict Indian Mobile Regex: Must start with 6-9, strictly 10 digits -->
                         <input type="tel" id="phone" class="form-control" placeholder="10-digit mobile number" pattern="[6-9][0-9]{9}" title="Enter a valid 10-digit Indian mobile number" maxlength="10" required>
                     </div>
 
@@ -112,13 +160,42 @@
                         <label for="collegeId">College ID / Roll Number</label>
                         <input type="text" id="collegeId" class="form-control" placeholder="e.g., 21CE1005" required>
                     </div>
+
+                    <!-- QR Code & Manual Payment Section -->
+                    <div class="payment-qr-box">
+                        <h4 class="font-heading" style="font-size: 0.95rem; color: var(--primary-cyan);">Scan & Pay Total Amount</h4>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">
+                            Pay the exact <strong>Total Payable</strong> shown in your Order Summary via any UPI app.
+                        </p>
+                        <!-- Replace photos/payment_qr.png with your actual QR code image path -->
+                        <img src="photos/payment_qr.png" alt="UPI Payment QR Code" onerror="this.style.display='none'" />
+                    </div>
+
+                    <!-- UPI Transaction ID / UTR -->
+                    <div class="form-group">
+                        <label for="transactionId">UPI Transaction ID / 12-Digit UTR Number</label>
+                        <input type="text" id="transactionId" class="form-control" placeholder="e.g., 432189654123" minlength="6" required>
+                    </div>
+
+                    <!-- Payment Screenshot / PDF Upload -->
+                    <div class="form-group">
+                        <label for="paymentProof">Upload Payment Screenshot or Receipt (Image / PDF, Max 5MB)</label>
+                        <div class="file-upload-wrapper">
+                            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 1.8rem; color: var(--primary-cyan); margin-bottom: 0.4rem;"></i>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">Click or drag file here to upload (PNG, JPG, PDF)</p>
+                            <div id="fileUploadName" class="file-upload-name"></div>
+                            <input type="file" id="paymentProof" accept="image/png, image/jpeg, image/jpg, image/webp, application/pdf" required>
+                        </div>
+                    </div>
+
                     <div style="margin: 20px 0; display: flex; gap: 10px; align-items: flex-start;">
-  <input type="checkbox" id="termsConsent" name="termsConsent" required style="margin-top: 4px;">
-  <label for="termsConsent" style="font-size: 0.9rem; color: #aaa; line-height: 1.4;">
-    I agree to the <a href="terms.html" target="_blank" style="color: var(--primary-cyan);">Terms & Conditions</a> and consent to Vortex 14.0 collecting my details for registration, event updates, and certificate generation.
-  </label>
-</div>
-                    <button type="submit" class="submit-btn" id="proceedBtn">Proceed to Payment</button>
+                        <input type="checkbox" id="termsConsent" name="termsConsent" required style="margin-top: 4px;">
+                        <label for="termsConsent" style="font-size: 0.9rem; color: #aaa; line-height: 1.4;">
+                            I agree to the <a href="terms.html" target="_blank" style="color: var(--primary-cyan);">Terms & Conditions</a> and consent to Vortex 14.0 collecting my details for registration, event updates, and certificate generation.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="proceedBtn">Submit Registration</button>
                 </form>
                 
             </div>
